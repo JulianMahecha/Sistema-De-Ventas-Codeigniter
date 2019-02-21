@@ -25,7 +25,7 @@
                 <!-- mini logo for sidebar mini 50x50 pixels -->
                 <span class="logo-mini"><b>S</b>V</span>
                 <!-- logo for regular state and mobile devices -->
-                <span class="logo-lg"><b>SISVEN</b></span>
+                <span class="logo-lg"><b>VENTAS_CI</b></span>
             </a>
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top">
@@ -42,7 +42,7 @@
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <img src="<?php echo base_url()?>assets/template/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                                <span class="hidden-xs">Alexander Pierce</span>
+                                <span class="hidden-xs">Julian Mahecha</span>
                             </a>
                             <ul class="dropdown-menu">
                                 <li class="user-body">
