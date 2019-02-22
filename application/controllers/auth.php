@@ -10,8 +10,11 @@ class auth extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('admin/login');
-
+        if($this->session->userdata("login")){
+            redirect(base_url()."dashboard");
+        }else{
+		    $this->load->view('admin/login');
+        }
     }
     
     public function login(){
@@ -31,6 +34,11 @@ class auth extends CI_Controller {
             $this->session->set_userdata($data);
             redirect(base_url()."dashboard");
         }
+    }
+
+    public function logout(){
+        $this->session->sess_destroy();
+        redirect(base_url());
     }
 
 }

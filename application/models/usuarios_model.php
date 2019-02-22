@@ -8,7 +8,7 @@ class usuarios_model extends CI_Model {
 		$this->db->where("user", $user);
 		$this->db->where("password", $password);
 
-		$result = $this->db->get('usuario');
+		$result = $this->db->get("usuario");
 
 		if($result->num_rows() > 0){
 			return $result->row();
