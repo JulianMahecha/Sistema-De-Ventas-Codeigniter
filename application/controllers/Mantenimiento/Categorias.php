@@ -23,6 +23,27 @@ class Categorias extends CI_Controller
         $this->load->view('layouts/footer');
     }
 
+    public function disabled_cat()
+    {
+        $data = array(
+            'categorias' => $this->categorias_model->getCategoriaDisabled(),
+        );
+        $this->load->view('layouts/header');
+        $this->load->view('layouts/aside');
+        $this->load->view('admin/categorias/disabled', $data);
+        $this->load->view('layouts/footer');
+    }
+
+    public function enable($id)
+    {
+        $data = array(
+            'estado' => "1",
+        );
+        $this->categorias_model->setCategoriaEnabled($id, $data);
+
+        redirect(base_url() . "mantenimiento/categorias");
+    }
+
     //Metodo para añadir categoria
 
     public function add()
@@ -107,12 +128,34 @@ class Categorias extends CI_Controller
 
             if ($this->categorias_model->updateCategoria($data, $id)) {
 
-                redirect(base_url()."mantenimiento/Categorias");
+                redirect(base_url() . "mantenimiento/Categorias");
             }
         } else {
             $this->session->set_flashdata('error', 'no se pudo actualizar la informacion');
-            redirect(base_url()."mantenimiento/categorias/edit/".$id);
-        
+            redirect(base_url() . "mantenimiento/categorias/edit/" . $id);
+        }
+    }
+
+    public function delete($id)
+    {
+
+
+
+        if ($id) {
+            $data = array(
+
+                'id' => $id,
+                'estado' => "0"
+
+            );
+
+            if ($this->categorias_model->deleteCategoria($data, $id)) {
+
+                redirect(base_url() . "mantenimiento/Categorias");
+            }
+        } else {
+            $this->session->set_flashdata('error', 'no se pudo actualizar la informacion');
+            redirect(base_url() . "mantenimiento/categorias");
         }
     }
 }

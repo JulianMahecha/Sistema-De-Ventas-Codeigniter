@@ -28,7 +28,7 @@
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-success btn-flat">Guardar</button>
-                                <button type="reset" class="btn btn-primary btn-flat">Limpiar</button>
+                                <button type="reset" class="btn btn-primary btn-flat">Reset</button>
                                 <a href="<?php echo base_url(); ?>mantenimiento/Categorias" class="btn btn-danger btn-flat">Regresar</a>
                             </div>
                         </form>

@@ -3,7 +3,7 @@
     <section class="content-header">
         <h1>
             Categoria
-            <small>List</small>
+            <small>Deshabilitadas</small>
         </h1>
     </section>
     <!-- Main content -->
@@ -13,8 +13,7 @@
             <div class="box-body">
                 <div class="row">
                     <div class="col-md-12">
-                        <a href="<?php echo base_url();?>mantenimiento/Categorias/add" class="btn btn-primary btn-flat"><span class="fa fa-plus"> Agregar Categoria</span></a>
-                        <a href="<?php echo base_url();?>mantenimiento/Categorias/disabled_cat" class="btn btn-primary btn-flat"><span class="fa fa-eye-slash"> Ver Categorias Deshabilitadas</span></a>
+                        <a href="<?php echo base_url();?>mantenimiento/Categorias/" class="btn btn-primary btn-flat"><span class="fa fa-backward"> Regresar</span></a>
                     </div>
                 </div>
                 <hr>
@@ -44,9 +43,7 @@
                                     </td>
                                     <td>
                                         <div class="btn-group">
-                                            <a href="" class="btn btn-info"><span class="fa fa-eye"></span></a>
-                                            <a href="<?php echo base_url();?>mantenimiento/Categorias/edit/<?php echo $categoria->id;?>" class="btn btn-warning" ><span class="fa fa-pencil"></span></a>
-                                            <a href="<?php echo base_url();?>mantenimiento/Categorias/delete/<?php echo $categoria->id;?>" class="btn btn-danger"><span class="fa fa-remove"></span></a>
+                                            <a href="<?php echo base_url();?>mantenimiento/Categorias/enable/<?php echo $categoria->id;?>" class="btn btn-info"><span class="fa fa-upload"></span></a>
                                         </div>
                                     </td>
                                 </tr>
@@ -62,4 +59,4 @@
         <!-- /.box -->
     </section>
     <!-- /.content -->
-</div> 
+</div>

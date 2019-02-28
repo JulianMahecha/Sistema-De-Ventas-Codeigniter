@@ -21,6 +21,15 @@ class categorias_model extends CI_Model
                 return $resultado->row();
         }
 
+        public function getCategoriaDisabled()
+        {
+
+                $this->db->where("estado", "0");
+                $resultado = $this->db->get("categoria");
+
+                return $resultado->result();
+        }
+
         public function setCategoria($data)
         {
 
@@ -32,4 +41,18 @@ class categorias_model extends CI_Model
                 $this->db->where("id", $id);
                 return $this->db->update('categoria', $data);
         }
+
+        public function deleteCategoria($data, $id)
+        {
+                $this->db->where("id", $id);
+                return $this->db->update('categoria', $data);
+        }
+
+        public function setCategoriaEnabled($id, $data)
+        {       
+               
+                $this->db->where("id", $id);
+                return $this->db->update('categoria', $data);
+        }
+        
 }
