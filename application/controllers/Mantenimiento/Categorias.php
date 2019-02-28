@@ -107,24 +107,12 @@ class Categorias extends CI_Controller
 
             if ($this->categorias_model->updateCategoria($data, $id)) {
 
-                $error = array(
-                    'error' => 0,
-                );
-
-                $this->load->view('layouts/header');
-                $this->load->view('layouts/aside');
-                $this->load->view('admin/categorias/add', $error);
-                $this->load->view('layouts/footer');
+                redirect(base_url()."mantenimiento/Categorias");
             }
         } else {
-
-            $error = array(
-                'error' => 1,
-            );
-            $this->load->view('layouts/header');
-            $this->load->view('layouts/aside');
-            $this->load->view('admin/categorias/add', $error);
-            $this->load->view('layouts/footer');
+            $this->session->set_flashdata('error', 'no se pudo actualizar la informacion');
+            redirect(base_url()."mantenimiento/categorias/edit/".$id);
+        
         }
     }
 }

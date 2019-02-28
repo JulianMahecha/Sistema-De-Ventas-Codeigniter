@@ -8,21 +8,6 @@
     </section>
     <!-- Main content -->
     <section class="content">
-        <?php if (isset($error) && $error == 1): ?>
-        <div class="alert alert-danger" role="alert">
-            Debes introducir informacion para poder almacenarla
-        </div>
-        <?php endif; ?>
-        <?php if (isset($error) && $error == 0): ?>
-        <div class="alert alert-success" role="alert">
-            Categoria Agregada
-        </div>
-        <?php endif; ?>
-        <?php if (isset($error) && $error == 2): ?>
-        <div class="alert alert-success" role="alert">
-            No se pudo guardar la informacion
-        </div>
-        <?php endif; ?>
         <!-- Default box -->
         <div class="box box-solid">
             <div class="box-body">
