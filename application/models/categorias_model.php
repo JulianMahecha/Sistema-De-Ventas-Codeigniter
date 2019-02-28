@@ -13,9 +13,23 @@ class categorias_model extends CI_Model
                 return $resultado->result();
         }
 
+        public function getCategoria($id)
+        {
+
+                $this->db->where("id", $id);
+                $resultado = $this->db->get("categoria");
+                return $resultado->row();
+        }
+
         public function setCategoria($data)
         {
 
                 return $this->db->insert('categoria', $data);
+        }
+
+        public function updateCategoria($data, $id)
+        {
+                $this->db->where("id", $id);
+                return $this->db->update('categoria', $data);
         }
 }

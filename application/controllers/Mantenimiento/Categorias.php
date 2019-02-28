@@ -51,18 +51,71 @@ class Categorias extends CI_Controller
 
             );
 
-            if($this->categorias_model->setCategoria($data)){
+            if ($this->categorias_model->setCategoria($data)) {
+
+                $error = array(
+                    'error' => 0,
+                );
+
+                $this->load->view('layouts/header');
+                $this->load->view('layouts/aside');
+                $this->load->view('admin/categorias/add', $error);
+                $this->load->view('layouts/footer');
+            }
+        } else {
 
             $error = array(
-                'error' => 0,
+                'error' => 1,
             );
-
             $this->load->view('layouts/header');
             $this->load->view('layouts/aside');
             $this->load->view('admin/categorias/add', $error);
             $this->load->view('layouts/footer');
-            }
+        }
+    }
 
+    //Metodo para editar
+
+    public function edit($id)
+    {
+
+        $data = array(
+            'categoria' => $this->categorias_model->getCategoria($id),
+        );
+
+        $this->load->view('layouts/header');
+        $this->load->view('layouts/aside');
+        $this->load->view('admin/categorias/edit', $data);
+        $this->load->view('layouts/footer');
+    }
+
+    public function update()
+    {
+
+        $id = $this->input->post("id");
+        $nombre = $this->input->post("nombre");
+        $descripcion = $this->input->post("descripcion");
+
+        if ($nombre && $descripcion) {
+            $data = array(
+
+                'nombre' => $nombre,
+                'descripcion' => $descripcion,
+                'estado' => "1"
+
+            );
+
+            if ($this->categorias_model->updateCategoria($data, $id)) {
+
+                $error = array(
+                    'error' => 0,
+                );
+
+                $this->load->view('layouts/header');
+                $this->load->view('layouts/aside');
+                $this->load->view('admin/categorias/add', $error);
+                $this->load->view('layouts/footer');
+            }
         } else {
 
             $error = array(
