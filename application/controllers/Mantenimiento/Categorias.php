@@ -23,6 +23,8 @@ class Categorias extends CI_Controller
         $this->load->view('layouts/footer');
     }
 
+    //Deshabilitar Categoria
+
     public function disabled_cat()
     {
         $data = array(
@@ -33,6 +35,8 @@ class Categorias extends CI_Controller
         $this->load->view('admin/categorias/disabled', $data);
         $this->load->view('layouts/footer');
     }
+
+    //Habilitar Categoria
 
     public function enable($id)
     {
@@ -110,6 +114,8 @@ class Categorias extends CI_Controller
         $this->load->view('layouts/footer');
     }
 
+    //Actualizar   
+    
     public function update()
     {
 
@@ -136,6 +142,8 @@ class Categorias extends CI_Controller
         }
     }
 
+    //Eliminar
+
     public function delete($id)
     {
 
@@ -157,5 +165,13 @@ class Categorias extends CI_Controller
             $this->session->set_flashdata('error', 'no se pudo actualizar la informacion');
             redirect(base_url() . "mantenimiento/categorias");
         }
+    }
+
+    public function view($id){
+
+        $data = array(
+            'categoria' => $this->categorias_model->getCategoria($id),
+        );
+        $this->load->view("admin/categorias/view", $data);
     }
 }
