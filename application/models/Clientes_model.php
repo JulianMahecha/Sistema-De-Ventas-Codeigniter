@@ -19,6 +19,12 @@ class Clientes_model extends CI_Model
             $resultado = $this->db->get("cliente");
             return $resultado->row(); 
         }
+
+        public function removeCliente($id, $data)
+        {
+                $this->db->where("id", $id);
+                return $this->db->update('cliente', $data);
+        }
         
         public function setCliente($data)
         {
@@ -31,5 +37,7 @@ class Clientes_model extends CI_Model
                 $this->db->where("id", $id);
                 return $this->db->update('cliente', $data);
         }
+
+
 
 }

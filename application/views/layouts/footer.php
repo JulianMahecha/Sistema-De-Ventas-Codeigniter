@@ -24,36 +24,68 @@
 <script src="<?php echo base_url(); ?>assets/template/dist/js/demo.js"></script>
 <script>
     $(document).ready(function() {
-                var base_url = "<?php echo base_url(); ?>";
-                $(".btn-view").on("click", function() {
-                        var id = $(this).val();
-                        $.ajax({
-                            url: base_url + "mantenimiento/Categorias/view/" + id,
-                            type: "POST",
-                            success: function(resp) {
-                                $("#modal-default .modal-body").html(resp);
-                                //alert(resp);
-                            }
-                        })
-                    })
+        var base_url = "<?php echo base_url(); ?>";
 
-                    $('#example1').DataTable({
-                        "language": {
-                            "lengthMenu": "Mostrar _MENU_ registros por pagina",
-                            "zeroRecords": "No se encontraron resultados",
-                            "info": "Mostrando pagina _PAGE_ de _PAGES_",
-                            "infoEmpty": "No existen registros",
-                            "infoFiltered": "(Filtrado de un total de _MAX_ registros)",
-                            "search": "Buscar:",
-                            "paginate": {
-                                "first": "primero",
-                                "last": "ultimo",
-                                "previous": "Anterior",
-                                "next": "Siguiente"
-                            }
-                        }
-                    }); $('#example1').DataTable(); $('.sidebar-menu').tree()
-                })
+        $(document).on("click", '.btn-remove', function(e) {
+            e.preventDefault();
+            if (confirm("Esta seguro de eliminar al cliente")) {
+                var $ruta = $(this).attr("href");
+                $.ajax({
+                    url: $ruta,
+                    type: "POST",
+                    success: function(response) {
+                        window.location.href = base_url + response;
+                    }
+                });
+            }
+        })
+
+
+        $(".btn-view").on("click", function() {
+
+            var id = $(this).val();
+            $.ajax({
+                url: base_url + "mantenimiento/Categorias/view/" + id,
+                type: "POST",
+                success: function(resp) {
+                    $("#modal-default .modal-body").html(resp);
+                }
+            })
+
+        })
+
+        $(".btn-cl-view").on("click", function() {
+
+            var id = $(this).val();
+            $.ajax({
+                url: base_url + "mantenimiento/Clientes/view/" + id,
+                type: "POST",
+                success: function(resp) {
+                    $("#modal-default .modal-body").html(resp);
+                }
+            })
+
+        })
+
+        $('#example1').DataTable({
+            "language": {
+                "lengthMenu": "Mostrar _MENU_ registros por pagina",
+                "zeroRecords": "No se encontraron resultados",
+                "info": "Mostrando pagina _PAGE_ de _PAGES_",
+                "infoEmpty": "No existen registros",
+                "infoFiltered": "(Filtrado de un total de _MAX_ registros)",
+                "search": "Buscar:",
+                "paginate": {
+                    "first": "primero",
+                    "last": "ultimo",
+                    "previous": "Anterior",
+                    "next": "Siguiente"
+                }
+            }
+        });
+        $('#example1').DataTable();
+        $('.sidebar-menu').tree()
+    })
 </script>
 </body>
 

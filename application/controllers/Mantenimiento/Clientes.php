@@ -35,6 +35,24 @@ class Clientes extends CI_Controller
         $this->load->view('layouts/footer');
     }
 
+    //Metodo para eliminar
+    public function delete($id)
+    {
+        $data = array(
+            'estado' => '0'
+        );
+
+        $result = $this->clientes_model->removeCliente($id, $data);
+
+        if ($result) {
+            echo("mantenimiento/Clientes");
+        }else{
+
+        }
+        
+    }
+
+
     //Metodo para editar
 
     public function edit($id)
@@ -126,5 +144,14 @@ class Clientes extends CI_Controller
             $this->session->set_flashdata('error', 'no se pudo actualizar la informacion');
             redirect(base_url() . "mantenimiento/clientes/edit/" . $id);
         }
+    }
+
+    //ver modal
+    public function view($id){
+
+        $data = array(
+            'cliente' => $this->clientes_model->getCliente($id),
+        );
+        $this->load->view("admin/clientes/view", $data);
     }
 }
