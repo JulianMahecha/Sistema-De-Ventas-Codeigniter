@@ -62,7 +62,7 @@
                                             <button type="button" class="btn btn-info btn-pr-view" data-toggle="modal" data-target="#modal-default" value="<?php echo $producto->id ?>">
                                                 <span class="fa fa-search"></span>
                                             </button>
-                                            <a href="<?php echo base_url(); ?>mantenimiento/Clientes/edit/<?php echo $producto->id; ?>" class="btn btn-warning"><span class="fa fa-pencil"></span></a>
+                                            <a href="<?php echo base_url(); ?>mantenimiento/Productos/edit/<?php echo $producto->id; ?>" class="btn btn-warning"><span class="fa fa-pencil"></span></a>
                                             <a href="<?php echo base_url(); ?>mantenimiento/Clientes/delete/<?php echo $producto->id; ?>" class="btn btn-danger btn-remove"><span class="fa fa-remove"></span></a>
                                         </div>
                                     </td>

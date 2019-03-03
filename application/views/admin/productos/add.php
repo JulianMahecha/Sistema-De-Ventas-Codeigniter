@@ -10,7 +10,7 @@
     <section class="content">
         <?php if (isset($error) && $error == 1): ?>
         <div class="alert alert-danger" role="alert">
-            Los campos Nombres, Apellidos y Telefono son obligatorios.
+            Los campos Codigo, Nombre, Precio, Stock y Categoria son obligatorios.
         </div>
         <?php endif; ?>
         <?php if (isset($error) && $error == 0): ?>
@@ -52,7 +52,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="categoria">Categoria</label>
-                                <input type="text" class="form-control" id="categoria" name="categoria">
+                                <select class="form-control"name="categoria" id="categoria">
+                                <?php foreach($categorias as $categoria):?>
+                                    <option value="<?php echo $categoria->id?>"><?php echo $categoria->nombre?></option>
+                                <?php endforeach;?>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-success btn-flat">Guardar</button>
