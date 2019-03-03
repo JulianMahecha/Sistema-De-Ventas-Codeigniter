@@ -167,6 +167,8 @@ class Categorias extends CI_Controller
         }
     }
 
+
+    //Ver Modal
     public function view($id){
 
         $data = array(
