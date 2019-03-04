@@ -18,9 +18,10 @@
                             <div class="form-group">
                                 <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $categoria->id ?>">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group <?php echo !empty(form_error("nombre"))?'has-error':'';?>">
                                 <label for="nombre">Nombre</label>
-                                <input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo $categoria->nombre ?>">
+                                <input type="text" class="form-control " id="nombre" name="nombre" value="<?php echo !empty(form_error("nombre"))?set_value("nombre"):$categoria->nombre?>">
+                                <?php echo form_error("nombre", "<span class='help-block'>", "</span>")?>
                             </div>
                             <div class="form-group">
                                 <label for="descripcion">Descripcion</label>

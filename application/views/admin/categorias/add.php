@@ -30,9 +30,10 @@
                 <div class="row">
                     <div class="col-md-12">
                         <form action="<?php echo base_url(); ?>/mantenimiento/categorias/store" method="POST">
-                            <div class="form-group">
+                            <div class="form-group <?php echo !empty(form_error("nombre"))?'has-error':'';?>">
                                 <label for="nombre">Nombre</label>
-                                <input type="text" class="form-control" id="nombre" name="nombre" name="nombre">
+                                <input type="text" class="form-control" id="nombre" name="nombre" name="nombre" value="<?php echo set_value("nombre")?>">
+                                <?php echo form_error("nombre", "<span class='help-block'>", "</span>")?>
                             </div>
                             <div class="form-group">
                                 <label for="descripcion">Descripcion</label>

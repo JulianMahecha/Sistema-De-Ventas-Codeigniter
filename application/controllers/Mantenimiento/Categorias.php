@@ -66,36 +66,42 @@ class Categorias extends CI_Controller
 
         $nombre = $this->input->post("nombre");
         $descripcion = $this->input->post("descripcion");
+        /* Validación del formulario */
+        $this->form_validation->set_rules("nombre", "Nombre", "required|is_unique[categoria.nombre]");
+        if ($this->form_validation->run()) {
 
-        if ($nombre && $descripcion) {
-            $data = array(
+            if ($nombre && $descripcion) {
+                $data = array(
 
-                'nombre' => $nombre,
-                'descripcion' => $descripcion,
-                'estado' => "1"
+                    'nombre' => $nombre,
+                    'descripcion' => $descripcion,
+                    'estado' => "1"
 
-            );
-
-            if ($this->categorias_model->setCategoria($data)) {
-
-                $error = array(
-                    'error' => 0,
                 );
 
+                if ($this->categorias_model->setCategoria($data)) {
+
+                    $error = array(
+                        'error' => 0,
+                    );
+
+                    $this->load->view('layouts/header');
+                    $this->load->view('layouts/aside');
+                    $this->load->view('admin/categorias/add', $error);
+                    $this->load->view('layouts/footer');
+                }
+            } else {
+
+                $error = array(
+                    'error' => 1,
+                );
                 $this->load->view('layouts/header');
                 $this->load->view('layouts/aside');
                 $this->load->view('admin/categorias/add', $error);
                 $this->load->view('layouts/footer');
             }
         } else {
-
-            $error = array(
-                'error' => 1,
-            );
-            $this->load->view('layouts/header');
-            $this->load->view('layouts/aside');
-            $this->load->view('admin/categorias/add', $error);
-            $this->load->view('layouts/footer');
+            $this->add();
         }
     }
 
@@ -103,6 +109,7 @@ class Categorias extends CI_Controller
 
     public function edit($id)
     {
+        /* Validación del formulario */
 
         $data = array(
             'categoria' => $this->categorias_model->getCategoria($id),
@@ -115,30 +122,42 @@ class Categorias extends CI_Controller
     }
 
     //Actualizar   
-    
+
     public function update()
     {
+
 
         $id = $this->input->post("id");
         $nombre = $this->input->post("nombre");
         $descripcion = $this->input->post("descripcion");
+        $categoria_actual = $this->categorias_model->getCategoria($id);
+        /* Validando Formulario */
+        if ($nombre == $categoria_actual->nombre) {
+            $this->form_validation->set_rules("nombre", "Nombre", "required");
+        } else {
+            $this->form_validation->set_rules("nombre", "Nombre", "required|is_unique[categoria.nombre]");
+        }
 
-        if ($nombre && $descripcion) {
-            $data = array(
+        if ($this->form_validation->run()) {
+            if ($nombre && $descripcion) {
+                $data = array(
 
-                'nombre' => $nombre,
-                'descripcion' => $descripcion,
-                'estado' => "1"
+                    'nombre' => $nombre,
+                    'descripcion' => $descripcion,
+                    'estado' => "1"
 
-            );
+                );
 
-            if ($this->categorias_model->updateCategoria($data, $id)) {
+                if ($this->categorias_model->updateCategoria($data, $id)) {
 
-                redirect(base_url() . "mantenimiento/Categorias");
+                    redirect(base_url() . "mantenimiento/Categorias");
+                }
+            } else {
+                $this->session->set_flashdata('error', 'no se pudo actualizar la informacion');
+                redirect(base_url() . "mantenimiento/categorias/edit/" . $id);
             }
         } else {
-            $this->session->set_flashdata('error', 'no se pudo actualizar la informacion');
-            redirect(base_url() . "mantenimiento/categorias/edit/" . $id);
+            $this->edit($id);
         }
     }
 
@@ -169,7 +188,8 @@ class Categorias extends CI_Controller
 
 
     //Ver Modal
-    public function view($id){
+    public function view($id)
+    {
 
         $data = array(
             'categoria' => $this->categorias_model->getCategoria($id),
