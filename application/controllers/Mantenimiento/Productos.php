@@ -152,5 +152,13 @@ class Productos extends CI_Controller
             $this->load->view('layouts/footer');
         }
     }
+
+    public function view($id)
+    {
+        $data = array(
+            'producto' => $this->productos_model->getProducto($id),
+        );
+        $this->load->view("admin/productos/view", $data);
+    }
 }
 
