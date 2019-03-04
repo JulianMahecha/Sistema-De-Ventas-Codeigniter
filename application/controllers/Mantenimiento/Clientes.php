@@ -146,7 +146,7 @@ class Clientes extends CI_Controller
         }
     }
 
-    //ver modal
+    //Modal
     public function view($id){
 
         $data = array(

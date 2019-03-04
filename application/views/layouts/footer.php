@@ -2,7 +2,7 @@
     <div class="pull-right hidden-xs">
         <b>Version</b> 0.1
     </div>
-    <strong>Copyright &copy; 2019 <a href="https://#">EM3 DEVELOPERS</a>.</strong> All rights
+    <strong>Copyright &copy; 2019 <a href="https://#">CHIEFS DEVELOPERS</a>.</strong> All rights
     reserved.
 </footer>
 </div>
@@ -23,6 +23,7 @@
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url(); ?>assets/template/dist/js/demo.js"></script>
 <script>
+    /* JQuery para prevenir la eliminacion de Clientes, si el usuario acepta la funcion devuelve mantenimiento/Clientes */
     $(document).ready(function() {
         var base_url = "<?php echo base_url(); ?>";
 
@@ -39,7 +40,7 @@
                 });
             }
         })
-
+        /* JQuery para prevenir la eliminacion de Productos, si el usuario acepta la funcion devuelve mantenimiento/Clientes */
         $(document).on("click", '.btn-pr-remove', function(e) {
             e.preventDefault();
             if (confirm("Esta seguro de eliminar el registro?")) {
@@ -54,7 +55,7 @@
             }
         })
 
-
+        /* JQuery para modal de Categorias*/
         $(".btn-view").on("click", function() {
 
             var id = $(this).val();
@@ -67,7 +68,7 @@
             })
 
         })
-
+        /* JQuery para modal de Clientes*/
         $(".btn-cl-view").on("click", function() {
 
             var id = $(this).val();
@@ -80,7 +81,7 @@
             })
 
         })
-
+        /* Sobreescribiendo Datatables*/
         $('#example1').DataTable({
             "language": {
                 "lengthMenu": "Mostrar _MENU_ registros por pagina",

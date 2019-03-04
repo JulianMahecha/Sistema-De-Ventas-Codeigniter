@@ -2,12 +2,12 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class auth extends CI_Controller {
-
+    /* Constructor */
 	public function __construct(){
         parent::__construct();
         $this->load->model("usuarios_model");
     }
-
+    /* Indice */
 	public function index()
 	{
         if($this->session->userdata("login")){
@@ -16,7 +16,7 @@ class auth extends CI_Controller {
 		    $this->load->view('admin/login');
         }
     }
-    
+    /* Login */
     public function login(){
         $user = $this->input->post("user");
         $password = $this->input->post("password");
@@ -36,7 +36,7 @@ class auth extends CI_Controller {
             redirect(base_url()."dashboard");
         }
     }
-
+    /* Logout */
     public function logout(){
         $this->session->sess_destroy();
         redirect(base_url());

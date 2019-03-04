@@ -4,7 +4,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Productos_model extends CI_Model
 {
-
+    /* Devuelve productos */
     public function getProductos()
     {
 
@@ -16,7 +16,7 @@ class Productos_model extends CI_Model
 
         return $resultado->result();
     }
-
+    /* Devuelve producto por id */
     public function getProducto($id)
     {
 
@@ -24,19 +24,19 @@ class Productos_model extends CI_Model
         $resultado = $this->db->get("producto");
         return $resultado->row();
     }
-
+    /* Actualiza producto por id */
     public function updateProducto($data, $id)
     {
         $this->db->where("id", $id);
         return $this->db->update('producto', $data);
     }
-
+    /* Cambia 'estado' de producto a 0 */
     public function deleteProducto($data, $id)
     {
             $this->db->where('id', $id);
             return $this->db->update('producto', $data);
     }
-
+    /* Inserta nuevo producto */
     public function setProducto($data)
     {
 

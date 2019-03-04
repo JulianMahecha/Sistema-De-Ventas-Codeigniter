@@ -2,14 +2,14 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Dashboard extends CI_Controller {
-
+	/* Constructor */
 	public function __construct(){
 	parent::__construct();
 	if(!$this->session->userdata("login")){
 		redirect(base_url());
 	    }
 	}
-	
+	/* Index */
 	public function index()
 	{
 		$this->load->view('layouts/header');
