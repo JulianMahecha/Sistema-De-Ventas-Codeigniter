@@ -12,31 +12,45 @@ class Productos extends CI_Controller
     }
 
 
-     //Clase Index
+    //Clase Index
 
-     public function index()
-     {
-         $data = array(
-             'productos' => $this->productos_model->getProductos(),
-         );
-         $this->load->view('layouts/header');
-         $this->load->view('layouts/aside');
-         $this->load->view('admin/productos/list', $data);
-         $this->load->view('layouts/footer');
-     }
+    public function index()
+    {
+        $data = array(
+            'productos' => $this->productos_model->getProductos(),
+        );
+        $this->load->view('layouts/header');
+        $this->load->view('layouts/aside');
+        $this->load->view('admin/productos/list', $data);
+        $this->load->view('layouts/footer');
+    }
 
-      //Metodo para añadir producto
+    //Metodo para añadir producto
 
     public function add()
     {
         $data = array(
-            "categorias"=>$this->categorias_model->getCategorias(),
+            "categorias" => $this->categorias_model->getCategorias(),
         );
 
         $this->load->view('layouts/header');
         $this->load->view('layouts/aside');
         $this->load->view('admin/productos/add', $data);
         $this->load->view('layouts/footer');
+    }
+
+    //Metodo para eliminar
+    public function delete($id)
+    {
+        if ($id) {
+            $data = array(
+                'estado' => 0
+            );
+
+            if ($result = $this->productos_model->deleteProducto($data, $id)) {
+                    echo("mantenimiento/Productos");
+            }
+        }
     }
 
     //Metodo para editar
@@ -46,7 +60,7 @@ class Productos extends CI_Controller
 
         $data = array(
             'producto' => $this->productos_model->getProducto($id),
-            "categorias"=>$this->categorias_model->getCategorias(),
+            "categorias" => $this->categorias_model->getCategorias(),
         );
 
         $this->load->view('layouts/header');
@@ -56,7 +70,7 @@ class Productos extends CI_Controller
     }
 
     //Actualizar   
-    
+
     public function update()
     {
 
@@ -70,10 +84,10 @@ class Productos extends CI_Controller
 
         if ($nombre && $codigo && $precio && $stock >= 0 && $categoria) {
             $data = array(
-                'codigo'=> $codigo,
+                'codigo' => $codigo,
                 'nombre' => $nombre,
-                'descripcion'=>$this->input->post("descripcion"),
-                'precio'=> $precio,
+                'descripcion' => $this->input->post("descripcion"),
+                'precio' => $precio,
                 'stock' => $stock,
                 'categoria_id' => $categoria,
                 'estado' => "1"
@@ -104,10 +118,10 @@ class Productos extends CI_Controller
 
         if ($nombre && $codigo && $precio && $stock >= 0 && $categoria) {
             $data = array(
-                'codigo'=> $codigo,
+                'codigo' => $codigo,
                 'nombre' => $nombre,
-                'descripcion'=>$this->input->post("descripcion"),
-                'precio'=> $precio,
+                'descripcion' => $this->input->post("descripcion"),
+                'precio' => $precio,
                 'stock' => $stock,
                 'categoria_id' => $categoria,
                 'estado' => "1"
@@ -118,7 +132,7 @@ class Productos extends CI_Controller
 
                 $error = array(
                     'error' => 0,
-                    "categorias"=>$this->categorias_model->getCategorias(),
+                    "categorias" => $this->categorias_model->getCategorias(),
                 );
 
                 $this->load->view('layouts/header');
@@ -130,7 +144,7 @@ class Productos extends CI_Controller
 
             $error = array(
                 'error' => 1,
-                "categorias"=>$this->categorias_model->getCategorias(),
+                "categorias" => $this->categorias_model->getCategorias(),
             );
             $this->load->view('layouts/header');
             $this->load->view('layouts/aside');
@@ -139,3 +153,4 @@ class Productos extends CI_Controller
         }
     }
 }
+

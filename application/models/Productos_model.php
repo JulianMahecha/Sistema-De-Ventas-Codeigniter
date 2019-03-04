@@ -18,22 +18,28 @@ class Productos_model extends CI_Model
     }
 
     public function getProducto($id)
-        {
+    {
 
-                $this->db->where("id", $id);
-                $resultado = $this->db->get("producto");
-                return $resultado->row();
-        }
+        $this->db->where("id", $id);
+        $resultado = $this->db->get("producto");
+        return $resultado->row();
+    }
 
-        public function updateProducto($data, $id)
-        {
-                $this->db->where("id", $id);
-                return $this->db->update('producto', $data);
-        }
+    public function updateProducto($data, $id)
+    {
+        $this->db->where("id", $id);
+        return $this->db->update('producto', $data);
+    }
+
+    public function deleteProducto($data, $id)
+    {
+            $this->db->where('id', $id);
+            return $this->db->update('producto', $data);
+    }
 
     public function setProducto($data)
     {
 
-            return $this->db->insert('producto', $data);
+        return $this->db->insert('producto', $data);
     }
 }

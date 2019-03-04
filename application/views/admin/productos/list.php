@@ -63,7 +63,7 @@
                                                 <span class="fa fa-search"></span>
                                             </button>
                                             <a href="<?php echo base_url(); ?>mantenimiento/Productos/edit/<?php echo $producto->id; ?>" class="btn btn-warning"><span class="fa fa-pencil"></span></a>
-                                            <a href="<?php echo base_url(); ?>mantenimiento/Clientes/delete/<?php echo $producto->id; ?>" class="btn btn-danger btn-remove"><span class="fa fa-remove"></span></a>
+                                            <a href="<?php echo base_url(); ?>mantenimiento/Productos/delete/<?php echo $producto->id; ?>" class="btn btn-danger btn-pr-remove"><span class="fa fa-remove"></span></a>
                                         </div>
                                     </td>
                                 </tr>
