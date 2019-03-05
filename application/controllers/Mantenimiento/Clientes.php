@@ -45,11 +45,8 @@ class Clientes extends CI_Controller
         $result = $this->clientes_model->removeCliente($id, $data);
 
         if ($result) {
-            echo("mantenimiento/Clientes");
-        }else{
-
-        }
-        
+            echo ("mantenimiento/Clientes");
+        } else { }
     }
 
 
@@ -60,6 +57,8 @@ class Clientes extends CI_Controller
 
         $data = array(
             'cliente' => $this->clientes_model->getCliente($id),
+            'tipo_clientes' => $this->clientes_model->getTipoClientes(),
+            'tipo_documentos' => $this->clientes_model->getTipoDocumentos()
         );
 
         $this->load->view('layouts/header');
@@ -114,40 +113,53 @@ class Clientes extends CI_Controller
     }
 
     //Actualizar   
-    
+
     public function update()
     {
-
+        //Atributos
         $id = $this->input->post("id");
         $nombre = $this->input->post("nombre");
-        $apellidos = $this->input->post("apellidos");
-        $telefono = $this->input->post("telefono");
-
-        if ($nombre && $apellidos && $telefono) {
-            $data = array(
-
-                'nombres' => $nombre,
-                'apellidos' => $apellidos,
-                'telefono' => $telefono,
-                'direccion' => $this->input->post("direccion"),
-                'rut' => $this->input->post("rut"),
-                'empresa' => $this->input->post("empresa"),
-                'estado' => "1"
-
-            );
-
-            if ($this->clientes_model->updateCliente($data, $id)) {
-
-                redirect(base_url() . "mantenimiento/Clientes");
-            }
-        } else {
-            $this->session->set_flashdata('error', 'no se pudo actualizar la informacion');
-            redirect(base_url() . "mantenimiento/clientes/edit/" . $id);
+        $tipo_cliente = $this->input->post("tipo_cliente");
+        $tipo_documento = $this->input->post("tipo_documento");
+        $documento = $this->input->post("documento");
+        
+        /* Validando Formulario */
+        $cliente_actual = $this->clientes_model->getCliente($id);
+        if ($documento == $cliente_actual->num_documento) {
+            $this->form_validation->set_rules('documento', 'Documento', 'required');
+        }else{
+            $this->form_validation->set_rules('documento', 'Documento', 'required|is_unique[cliente.num_documento]');
         }
+        /* Iniciando validacion */
+        if ($this->form_validation->run()) {
+            if ($nombre && $tipo_documento && $tipo_cliente && $documento) {
+                $data = array(
+    
+                    'nombres' => $nombre,
+                    'direccion' => $this->input->post("direccion"),
+                    'telefono' => $this->input->post("telefono"),
+                    'direccion' => $this->input->post("direccion"),
+                    'tipo_cliente_id' => $this->input->post("tipo_cliente"),
+                    'num_documento' => $this->input->post("documento"),
+                    'tipo_documento_id' => $this->input->post("tipo_documento")
+    
+                );
+    
+                if ($this->clientes_model->updateCliente($data, $id)) {
+    
+                    redirect(base_url() . "mantenimiento/Clientes");
+                }
+            } else {
+                $this->session->set_flashdata('error', 'no se pudo actualizar la informacion');
+                redirect(base_url() . "mantenimiento/clientes/edit/" . $id);
+            }
+        }$this->edit($id);
+        
     }
 
     //Modal
-    public function view($id){
+    public function view($id)
+    {
 
         $data = array(
             'cliente' => $this->clientes_model->getCliente($id),
@@ -155,3 +167,4 @@ class Clientes extends CI_Controller
         $this->load->view("admin/clientes/view", $data);
     }
 }
+

@@ -40,7 +40,17 @@ class Clientes_model extends CI_Model
                 $this->db->where("id", $id);
                 return $this->db->update('cliente', $data);
         }
-
-
+        /* Devuelve Tipo de Clientes */
+        public function getTipoClientes()
+        {
+                $resultado = $this->db->get("tipo_cliente");
+                return $resultado->result();
+        }
+        /* Devuelve Tipo de Documentos */
+        public function getTipoDocumentos()
+        {
+                $resultado = $this->db->get("tipo_documento");
+                return $resultado->result();
+        }
 
 }
