@@ -23,12 +23,12 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Nombres</th>
-                                    <th>Apellidos</th>
+                                    <th>Nombre</th>
+                                    <th>Tipo Cliente</th>
+                                    <th>Tipo documento</th>
+                                    <th>documento</th>
                                     <th>Telefono</th>
-                                    <th>Direccion</th>
-                                    <th>RUT</th>
-                                    <th>Empresa</th>
+                                    <th>direccion</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -42,19 +42,19 @@
                                         <?php echo $cliente->nombres; ?>
                                     </td>
                                     <td>
-                                        <?php echo $cliente->apellidos; ?>
+                                        <?php echo $cliente->tipocliente; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $cliente->tipodocumento; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $cliente->num_documento; ?>
                                     </td>
                                     <td>
                                         <?php echo $cliente->telefono; ?>
                                     </td>
                                     <td>
                                         <?php echo $cliente->direccion; ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $cliente->rut; ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $cliente->empresa; ?>
                                     </td>
                                     <td>
                                         <div class="btn-group">

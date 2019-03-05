@@ -6,10 +6,13 @@ class Clientes_model extends CI_Model
         /* Devuelve Clientes */
         public function getClientes()
         {
+                $this->db->select("c.*, tc.nombre as tipocliente, td.nombre as tipodocumento");
+                $this->db->from("cliente c");
+                $this->db->join("tipo_cliente tc", "c.tipo_cliente_id = tc.id");
+                $this->db->join("tipo_documento td", "c.tipo_documento_id = td.id");
+                $this->db->where("c.estado", "1");
 
-                $this->db->where("estado", "1");
-                $resultado = $this->db->get("cliente");
-
+                $resultado = $this->db->get();
                 return $resultado->result();
         }
         /* Devuelve cliente por id */
