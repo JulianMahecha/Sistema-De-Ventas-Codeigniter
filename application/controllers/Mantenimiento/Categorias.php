@@ -68,6 +68,7 @@ class Categorias extends CI_Controller
         $descripcion = $this->input->post("descripcion");
         /* Validación del formulario */
         $this->form_validation->set_rules("nombre", "Nombre", "required|is_unique[categoria.nombre]");
+        $this->form_validation->set_rules("descripcion", "Descripcion", "required[categoria.descripcion]");
         if ($this->form_validation->run()) {
 
             if ($nombre && $descripcion) {
@@ -134,9 +135,17 @@ class Categorias extends CI_Controller
         /* Validando Formulario */
         if ($nombre == $categoria_actual->nombre) {
             $this->form_validation->set_rules("nombre", "Nombre", "required");
+            $this->form_validation->set_rules("descripcion", "Descripcion", "required[categoria.descripcion]");
+            $this->form_validation->set_message("nombre", 'Ya existe una categoria con ese nombre');
         } else {
             $this->form_validation->set_rules("nombre", "Nombre", "required|is_unique[categoria.nombre]");
+            $this->form_validation->set_rules("descripcion", "Descripcion", "required[categoria.descripcion]");
+            $this->form_validation->set_message("nombre", 'Ya existe una categoria con ese nombre');
         }
+
+        
+        
+        
 
         if ($this->form_validation->run()) {
             if ($nombre && $descripcion) {

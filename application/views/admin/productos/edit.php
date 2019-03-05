@@ -23,25 +23,29 @@
                             <div class="form-group">
                                 <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $producto->id ?>">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group <?php echo !empty(form_error('codigo'))?'has-error':''; ?>">
                                 <label for="nombre">Codigo</label>
                                 <input type="text" class="form-control" id="codigo" name="codigo" value="<?php echo $producto->codigo ?>">
+                                <?php echo form_error('codigo', '<span class = "help-block">', '</span>')?>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group <?php echo !empty(form_error('nombre'))?'has-error':''; ?>">
                                 <label for="nombre">Nombre</label>
                                 <input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo $producto->nombre ?>">
+                                <?php echo form_error('nombre', '<span class = "help-block">', '</span>')?>
                             </div>
                             <div class="form-group">
                                 <label for="descripcion">Descripcion</label>
                                 <input type="text" class="form-control" id="descripcion" name="descripcion" value="<?php echo $producto->descripcion ?>">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group <?php echo !empty(form_error('precio'))?'has-error':''; ?>">
                                 <label for="precio">Precio</label>
                                 <input type="text" class="form-control" id="precio" name="precio" value="<?php echo $producto->precio ?>">
+                                <?php echo form_error('precio', '<span class = "help-block">', '</span>')?>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group <?php echo !empty(form_error('stock'))?'has-error':''; ?>">
                                 <label for="stock">Stock</label>
                                 <input type="text" class="form-control" id="stock" name="stock" value="<?php echo $producto->stock ?>">
+                                <?php echo form_error('stock', '<span class = "help-block">', '</span>')?>
                             </div>
                             <div class="form-group">
                                 <label for="categoria">Categoria</label>

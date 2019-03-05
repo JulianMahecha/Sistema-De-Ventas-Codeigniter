@@ -29,6 +29,8 @@ class Productos extends CI_Controller
 
     public function add()
     {
+
+
         $data = array(
             "categorias" => $this->categorias_model->getCategorias(),
         );
@@ -48,7 +50,7 @@ class Productos extends CI_Controller
             );
 
             if ($result = $this->productos_model->deleteProducto($data, $id)) {
-                    echo("mantenimiento/Productos");
+                echo ("mantenimiento/Productos");
             }
         }
     }
@@ -82,25 +84,54 @@ class Productos extends CI_Controller
         $categoria = $this->input->post("categoria");
 
 
-        if ($nombre && $codigo && $precio && $stock >= 0 && $categoria) {
-            $data = array(
-                'codigo' => $codigo,
-                'nombre' => $nombre,
-                'descripcion' => $this->input->post("descripcion"),
-                'precio' => $precio,
-                'stock' => $stock,
-                'categoria_id' => $categoria,
-                'estado' => "1"
+        $producto_actual = $this->productos_model->getProducto($id);
+        /* Validando Formulario */
+        if ($nombre == $producto_actual->nombre && $codigo == $producto_actual->codigo) {
+            $this->form_validation->set_rules('codigo', 'Codigo', 'required');
+            $this->form_validation->set_rules('nombre', 'Nombre', 'required');
+            $this->form_validation->set_rules('precio', 'Precio', 'required');
+            $this->form_validation->set_rules('stock', 'Stock', 'required');
+        } else if($nombre == $producto_actual->nombre) {
+            $this->form_validation->set_rules('codigo', 'Codigo', 'required|is_unique[producto.codigo]');
+            $this->form_validation->set_rules('nombre', 'Nombre', 'required');
+            $this->form_validation->set_rules('precio', 'Precio', 'required');
+            $this->form_validation->set_rules('stock', 'Stock', 'required');
+        }else if($codigo == $producto_actual->codigo) {
+            $this->form_validation->set_rules('codigo', 'Codigo', 'required');
+            $this->form_validation->set_rules('nombre', 'Nombre', 'required|is_unique[producto.nombre]');
+            $this->form_validation->set_rules('precio', 'Precio', 'required');
+            $this->form_validation->set_rules('stock', 'Stock', 'required');
+        }else{
+            $this->form_validation->set_rules('codigo', 'Codigo', 'required|is_unique[producto.codigo]');
+            $this->form_validation->set_rules('nombre', 'Nombre', 'required|is_unique[producto.nombre]');
+            $this->form_validation->set_rules('precio', 'Precio', 'required');
+            $this->form_validation->set_rules('stock', 'Stock', 'required');
+        }
 
-            );
 
-            if ($this->productos_model->updateProducto($data, $id)) {
+        if ($this->form_validation->run()) {
+            if ($nombre && $codigo && $precio && $stock >= 0 && $categoria) {
+                $data = array(
+                    'codigo' => $codigo,
+                    'nombre' => $nombre,
+                    'descripcion' => $this->input->post("descripcion"),
+                    'precio' => $precio,
+                    'stock' => $stock,
+                    'categoria_id' => $categoria,
+                    'estado' => "1"
 
-                redirect(base_url() . "mantenimiento/Productos");
+                );
+
+                if ($this->productos_model->updateProducto($data, $id)) {
+
+                    redirect(base_url() . "mantenimiento/Productos");
+                }
+            } else {
+                $this->session->set_flashdata('error', 'no se pudo actualizar la informacion');
+                redirect(base_url() . "mantenimiento/Productos/edit/" . $id);
             }
         } else {
-            $this->session->set_flashdata('error', 'no se pudo actualizar la informacion');
-            redirect(base_url() . "mantenimiento/Productos/edit/" . $id);
+            $this->edit($id);
         }
     }
 
@@ -115,41 +146,50 @@ class Productos extends CI_Controller
         $stock = $this->input->post("stock");
         $categoria = $this->input->post("categoria");
 
+        $this->form_validation->set_rules('codigo', 'Codigo', 'required|is_unique[producto.codigo]');
+        $this->form_validation->set_rules('nombre', 'Nombre', 'required|is_unique[producto.nombre]');
+        $this->form_validation->set_rules('precio', 'Precio', 'required');
+        $this->form_validation->set_rules('stock', 'Stock', 'required');
 
-        if ($nombre && $codigo && $precio && $stock >= 0 && $categoria) {
-            $data = array(
-                'codigo' => $codigo,
-                'nombre' => $nombre,
-                'descripcion' => $this->input->post("descripcion"),
-                'precio' => $precio,
-                'stock' => $stock,
-                'categoria_id' => $categoria,
-                'estado' => "1"
+        if ($this->form_validation->run()) {
 
-            );
+            if ($nombre && $codigo && $precio && $stock >= 0 && $categoria) {
+                $data = array(
+                    'codigo' => $codigo,
+                    'nombre' => $nombre,
+                    'descripcion' => $this->input->post("descripcion"),
+                    'precio' => $precio,
+                    'stock' => $stock,
+                    'categoria_id' => $categoria,
+                    'estado' => "1"
 
-            if ($this->productos_model->setProducto($data)) {
-
-                $error = array(
-                    'error' => 0,
-                    "categorias" => $this->categorias_model->getCategorias(),
                 );
 
+                if ($this->productos_model->setProducto($data)) {
+
+                    $error = array(
+                        'error' => 0,
+                        "categorias" => $this->categorias_model->getCategorias(),
+                    );
+
+                    $this->load->view('layouts/header');
+                    $this->load->view('layouts/aside');
+                    $this->load->view('admin/productos/add', $error);
+                    $this->load->view('layouts/footer');
+                }
+            } else {
+
+                $error = array(
+                    'error' => 1,
+                    "categorias" => $this->categorias_model->getCategorias(),
+                );
                 $this->load->view('layouts/header');
                 $this->load->view('layouts/aside');
                 $this->load->view('admin/productos/add', $error);
                 $this->load->view('layouts/footer');
             }
         } else {
-
-            $error = array(
-                'error' => 1,
-                "categorias" => $this->categorias_model->getCategorias(),
-            );
-            $this->load->view('layouts/header');
-            $this->load->view('layouts/aside');
-            $this->load->view('admin/productos/add', $error);
-            $this->load->view('layouts/footer');
+            $this->add();
         }
     }
 
@@ -161,4 +201,3 @@ class Productos extends CI_Controller
         $this->load->view("admin/productos/view", $data);
     }
 }
-
