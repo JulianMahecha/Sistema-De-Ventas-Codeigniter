@@ -18,9 +18,10 @@
                             <div class="form-group">
                                 <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $cliente->id ?>">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group <?php echo !empty(form_error('nombre'))?'has-error':''; ?>">
                                 <label for="nombre">Nombre</label>
                                 <input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo $cliente->nombres ?>">
+                                <?php echo form_error('nombre', '<span class = "help-block">', '</span>')?>
                             </div>
                             <div class="form-group">
                                 <label for="tipo_cliente">Tipo Cliente</label>
@@ -59,9 +60,10 @@
                                 <input type="text" class="form-control" id="documento" name="documento" value="<?php echo $cliente->num_documento ?>">
                                 <?php echo form_error('documento', '<span class = "help-block">', '</span>')?>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group <?php echo !empty(form_error('telefono'))?'has-error':''; ?>">
                                 <label for="telefono">Telefono</label>
                                 <input type="text" class="form-control" id="telefono" name="telefono" value="<?php echo $cliente->telefono ?>">
+                                <?php echo form_error('telefono', '<span class = "help-block">', '</span>')?>
                             </div>
                             <div class="form-group">
                                 <label for="direccion">Dirección</label>
