@@ -85,14 +85,13 @@
         $(".btn-cl-view").on("click", function() {
 
             var cliente = $(this).val();
-            
             var infoCliente = cliente.split("*");
-            html = "<p><strong>Nombre: </strong>"+infoCliente[1]+"</p>"+
-            "<p><strong>Tipo Cliente: </strong>"+infoCliente[2]+"</p>"+
-            "<p><strong>Tipo Documento: </strong>"+infoCliente[3]+"</p>"+
-            "<p><strong>Documento: </strong>"+infoCliente[4]+"</p>"+
-            "<p><strong>Telefono: </strong>"+infoCliente[5]+"</p>"+
-            "<p><strong>Dirección: </strong>"+infoCliente[6]+"</p>"
+            html = "<p><strong>Nombre: </strong>" + infoCliente[1] + "</p>" +
+                "<p><strong>Tipo Cliente: </strong>" + infoCliente[2] + "</p>" +
+                "<p><strong>Tipo Documento: </strong>" + infoCliente[3] + "</p>" +
+                "<p><strong>Documento: </strong>" + infoCliente[4] + "</p>" +
+                "<p><strong>Telefono: </strong>" + infoCliente[5] + "</p>" +
+                "<p><strong>Dirección: </strong>" + infoCliente[6] + "</p>"
             $("#modal-default .modal-body").html(html);
 
         })
@@ -115,6 +114,7 @@
         });
         $('#example1').DataTable();
         $('.sidebar-menu').tree();
+
     })
 </script>
 </body>
