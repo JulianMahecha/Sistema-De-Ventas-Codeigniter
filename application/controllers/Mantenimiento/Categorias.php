@@ -122,7 +122,7 @@ class Categorias extends CI_Controller
         $this->load->view('layouts/footer');
     }
 
-    //Actualizar   
+    //Actualizar  
 
     public function update()
     {
