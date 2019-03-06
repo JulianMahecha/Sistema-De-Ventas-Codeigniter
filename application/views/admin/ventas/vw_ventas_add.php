@@ -1,11 +1,10 @@
-
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-        Ventas
-        <small>Nuevo</small>
+            Ventas
+            <small>Nuevo</small>
         </h1>
     </section>
     <!-- Main content -->
@@ -16,21 +15,24 @@
                 <div class="row">
                     <div class="col-md-12">
 
-                        <form action="<?php echo base_url();?>movimientos/Ctlr_Ventas/store" method="POST" class="form-horizontal">
+                        <form action="<?php echo base_url(); ?>movimientos/Ctlr_Ventas/store" method="POST" class="form-horizontal">
                             <div class="form-group">
                                 <div class="col-md-3">
                                     <label for="">Comprobante:</label>
                                     <select name="comprobantes" id="comprobantes" class="form-control" required>
-                                        <option value="">Seleccione...</option>
-                                        <option value="1">Remisión</option>
-                                        <option value="2">Factura</option>
+                                        <option value="">Seleccione Por Favor</option>
+                                        <?php foreach ($tipo_comprobantes as $tipo_comprobante) : ?>
+                                        <?php $dataComprobante = $tipo_comprobante->id . "*" . $tipo_comprobante->nombre . "*" . $tipo_comprobante->cantidad . "*" .
+                                            $tipo_comprobante->iva . "*" . $tipo_comprobante->serie . "*"; ?>
+                                        <option value="<?php echo $dataComprobante; ?>"><?php echo $tipo_comprobante->nombre ?></option>
+                                        <?php endforeach ?>
                                     </select>
                                     <input type="hidden" id="idcomprobante" name="idcomprobante">
-                                    <input type="hidden" id="igv">
+                                    <input type="hidden" id="iva">
                                 </div>
                                 <div class="col-md-3">
                                     <label for="">Serie:</label>
-                                    <input type="text" class="form-control" name="serie" readonly>
+                                    <input type="text" class="form-control" name="serie" id ="serie" readonly>
                                 </div>
                                 <div class="col-md-3">
                                     <label for="">Numero:</label>
@@ -45,7 +47,7 @@
                                         <input type="hidden" name="idcliente" id="idcliente">
                                         <input type="text" class="form-control" disabled="disabled" id="cliente">
                                         <span class="input-group-btn">
-                                            <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modal-default" ><span class="fa fa-search"></span> Buscar</button>
+                                            <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modal-default"><span class="fa fa-search"></span> Buscar</button>
                                         </span>
                                     </div><!-- /input-group -->
                                 </div>
@@ -91,8 +93,8 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="input-group">
-                                        <span class="input-group-addon">IGV:</span>
-                                        <input type="text" class="form-control" placeholder="Username" name="igv" readonly="readonly">
+                                        <span class="input-group-addon">IVA:</span>
+                                        <input type="text" class="form-control" placeholder="Username" name="iva" readonly="readonly">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
@@ -132,7 +134,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span></button>
+                    <span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">Lita de Clientes</h4>
             </div>
             <div class="modal-body">
@@ -158,4 +160,4 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
-<!-- /.modal -->
+<!-- /.modal --> 
