@@ -8,6 +8,7 @@ class Ctlr_Ventas extends CI_Controller
     {
         parent::__construct();
         $this->load->model("ventas_model");
+        $this->load->model("clientes_model");
     }
 
     public function index(){
@@ -20,7 +21,8 @@ class Ctlr_Ventas extends CI_Controller
     public function add(){
 
         $data = array(
-            "tipo_comprobantes" => $this->ventas_model->getComprobantes()
+            "tipo_comprobantes" => $this->ventas_model->getComprobantes(),
+            "clientes"=>$this->clientes_model->getClientes()
         );
 
         $this->load->view('layouts/header');

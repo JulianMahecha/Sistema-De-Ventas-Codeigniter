@@ -32,7 +32,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <label for="">Serie:</label>
-                                    <input type="text" class="form-control" name="serie" id ="serie" readonly>
+                                    <input type="text" class="form-control" name="serie" id="serie" readonly>
                                 </div>
                                 <div class="col-md-3">
                                     <label for="">Numero:</label>
@@ -148,7 +148,25 @@
                         </tr>
                     </thead>
                     <tbody>
-
+                        <?php if (!empty($clientes)) : ?>
+                        <?php foreach ($clientes as $cliente) : ?>
+                        <tr>
+                            <td>
+                                <?php echo $cliente->id; ?>
+                            </td>
+                            <td>
+                                <?php echo $cliente->nombres; ?>
+                            </td>
+                            <td>
+                                <?php echo $cliente->num_documento; ?>
+                            </td>
+                            <?php $datacliente = $cliente->id."*".$cliente->nombres."*".$cliente->tipocliente."*".$cliente->tipodocumento."*".$cliente->num_documento."*".$cliente->telefono."*".$cliente->direccion;?>
+                            <td>
+                                <button type="button" class="btn btn-success btn-check" value="<?php echo $datacliente?>"><span class="fa fa-arrow-right"></span></button>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                        <?php endif; ?>
                     </tbody>
                 </table>
             </div>

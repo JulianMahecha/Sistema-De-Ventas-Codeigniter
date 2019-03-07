@@ -132,13 +132,22 @@
                 $("#serie").val(null);
                 $('#numero').val(null);
             }
+        })
 
+        /* ventas/add Boton para pasar informacion del modal a la plantilla add */
 
+        $(".btn-check").on("click", function() {
+            dataCliente = $(this).val();
+            infoCliente = dataCliente.split("*");
 
+            $("#idcliente").val(infoCliente[0]);
+            $("#cliente").val(infoCliente[1]);
+            $("#modal-default").modal("hide");
 
         })
     })
 
+    /* Generador de numeros para factura */
     function generarNumero(numero) {
         if (numero >= 99999 && numero < 999999) {
             return Number(numero) + 1
