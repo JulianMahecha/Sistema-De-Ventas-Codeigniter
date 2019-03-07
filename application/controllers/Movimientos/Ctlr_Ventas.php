@@ -31,7 +31,11 @@ class Ctlr_Ventas extends CI_Controller
         $this->load->view('layouts/footer');
     }
 
-    public function store(){
+    public function getProductos(){
+        
+        $valor = $this->input->post("valor");
+        $clientes = $this->ventas_model->getProductos($valor);
+        echo json_encode($clientes);
 
     }
 }

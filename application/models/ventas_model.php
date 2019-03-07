@@ -10,4 +10,14 @@ class ventas_model extends CI_Model {
 
     }
 
+    /* Funcion que devuelve productos para campo Autocomplete*/
+    public function getProductos($valor){
+        $this->db->select("id, codigo, nombre as label, precio, stock");
+        $this->db->from("producto");
+        $this->db->like("nombre", $valor);
+
+        $resultados = $this->db->get();
+
+        return $resultados->result_array();
+    }
 }

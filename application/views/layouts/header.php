@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="<?php echo base_url();?>assets/template/bootstrap/css/bootstrap.min.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="<?php echo base_url();?>assets/template/font-awesome/css/font-awesome.min.css">
+    <!-- JQuery UI -->
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/template/jquery-ui/jquery-ui.css">
     <!-- DataTables -->
   <link rel="stylesheet" href="<?php echo base_url();?>datatables.net-bs/css/dataTables.bootstrap.min.css">
     <!-- Theme style -->
@@ -17,6 +19,7 @@
     <!-- AdminLTE Skins. Choose a skin from the css/skins
     folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="<?php echo base_url();?>assets/template/dist/css/skins/_all-skins.min.css">
+    
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
     <!-- Site wrapper -->

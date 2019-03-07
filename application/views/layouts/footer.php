@@ -11,6 +11,8 @@
 <script src="<?php echo base_url(); ?>assets/template/jquery/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="<?php echo base_url(); ?>assets/template/bootstrap/js/bootstrap.min.js"></script>
+<!-- JQuery UI -->
+<script src="<?php echo base_url(); ?>assets/template/jquery-ui/jquery-ui.js"></script>
 <!-- SlimScroll -->
 <script src="<?php echo base_url(); ?>assets/template/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <!-- DataTables -->
@@ -144,6 +146,28 @@
             $("#cliente").val(infoCliente[1]);
             $("#modal-default").modal("hide");
 
+        })
+
+        /* Campo Autocomplete Add Venta */
+        $("#producto").autocomplete({
+            source:function(request, response){
+                $.ajax({
+                    url: base_url+"movimientos/Ctlr_Ventas/getProductos",
+                    type: "POST",
+                    dataType:"json",
+                    data:{valor: request.term},
+                    success:function(data){
+                        response(data);
+                    }
+                });
+            },
+            minLength:2,
+            select:function(event, ui){
+                data = ui.item.id+"*"+ui.item.codigo+"*"+ui.item.label+"*"+ui.item.precio+"*"+
+                ui.item.stock;
+
+                $("#btn-agregar").val(data);
+            },
         })
     })
 
