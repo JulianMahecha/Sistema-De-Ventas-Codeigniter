@@ -134,6 +134,8 @@
                 $("#serie").val(null);
                 $('#numero').val(null);
             }
+
+            sumar();
         })
 
         /* ventas/add Boton para pasar informacion del modal a la plantilla add */
@@ -150,25 +152,68 @@
 
         /* Campo Autocomplete Add Venta */
         $("#producto").autocomplete({
-            source:function(request, response){
+            source: function(request, response) {
                 $.ajax({
-                    url: base_url+"movimientos/Ctlr_Ventas/getProductos",
+                    url: base_url + "movimientos/Ctlr_Ventas/getProductos",
                     type: "POST",
-                    dataType:"json",
-                    data:{valor: request.term},
-                    success:function(data){
+                    dataType: "json",
+                    data: {
+                        valor: request.term
+                    },
+                    success: function(data) {
                         response(data);
                     }
                 });
             },
-            minLength:2,
-            select:function(event, ui){
-                data = ui.item.id+"*"+ui.item.codigo+"*"+ui.item.label+"*"+ui.item.precio+"*"+
-                ui.item.stock;
+            minLength: 2,
+            select: function(event, ui) {
+                data = ui.item.id + "*" + ui.item.codigo + "*" + ui.item.label + "*" + ui.item.precio + "*" +
+                    ui.item.stock;
 
                 $("#btn-agregar").val(data);
             },
-        })
+        });
+        /* Recuperando informacion del boton agregar */
+        $("#btn-agregar").on("click", function() {
+            data = $(this).val();
+            if (data != '') {
+                infoProducto = data.split("*");
+                html = "<tr>";
+                html += "<td><input type='hidden' name='idproductos[]' value='" + infoProducto[0] + "'>" + infoProducto[1] + "</td>";
+                html += "<td>" + infoProducto[2] + "</td>";
+                html += "<td><input type='hidden' name='precios[]' value='" + infoProducto[3] + "'>" + infoProducto[3] + "</td>";
+                html += "<td>" + infoProducto[4] + "</td>";
+                html += "<td><input type ='text' name='cantidades[]' class='cantidades' value='1'></td>";
+                html += "<td><input type='hidden' name='importes[]' value='" + infoProducto[3] + "'><p>" + infoProducto[3] + "</p></td>";
+                html += "<td><button type='button' class='btn btn-danger btn-remove-producto'><span class ='fa fa-remove'></span></button></td>";
+                html += "<tr>";
+
+                $("#tbventas tbody").append(html);
+                sumar();
+                $("#btn-agregar").val(null);
+                $("#producto").val(null);
+            } else {
+                alert("Seleccione un producto");
+            }
+
+        });
+        /* Eliminar fila de producto en venta */
+        $(document).on("click", ".btn-remove-producto", function() {
+            $(this).closest("tr").remove();
+            sumar();
+        });
+        /* Modificar valor activamente */
+        $(document).on("keyup", "#tbventas input.cantidades", function() {
+            cantidad = $(this).val();
+            precio = $(this).closest("tr").find("td:eq(2)").text();
+            importe = cantidad * precio;
+
+            $(this).closest("tr").find("td:eq(5)").children("p").text(importe);
+            $(this).closest("tr").find("td:eq(5)").children("input").val(importe);
+
+            sumar();
+        });
+
     })
 
     /* Generador de numeros para factura */
@@ -192,6 +237,22 @@
             return "00000" + (Number(numero) + 1)
         }
     }
+
+    function sumar() {
+        subtotal = 0;
+        $("#tbventas tbody tr").each(function() {
+            subtotal += Number($(this).find("td:eq(5)").text());
+        })
+        $("input[name=subtotal]").val(subtotal);
+        porcentaje = $("#iva").val();
+        iva = subtotal * (porcentaje/100);
+        $("input[name=iva]").val(iva);
+        descuento = $("input[name=descuento]").val();
+        total = subtotal + iva - descuento;
+        $("input[name=total]").val(total);
+
+    }
+
 </script>
 </body>
 

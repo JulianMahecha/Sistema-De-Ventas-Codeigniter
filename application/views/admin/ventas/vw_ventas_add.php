@@ -1,3 +1,9 @@
+<style type="text/css">
+    .ui-autocomplete-loading {
+        background: white url("https://jqueryui.com/resources/demos/autocomplete/images/ui-anim_basic_16x16.gif") right center no-repeat;
+    }
+</style>
+
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -160,9 +166,9 @@
                             <td>
                                 <?php echo $cliente->num_documento; ?>
                             </td>
-                            <?php $datacliente = $cliente->id."*".$cliente->nombres."*".$cliente->tipocliente."*".$cliente->tipodocumento."*".$cliente->num_documento."*".$cliente->telefono."*".$cliente->direccion;?>
+                            <?php $datacliente = $cliente->id . "*" . $cliente->nombres . "*" . $cliente->tipocliente . "*" . $cliente->tipodocumento . "*" . $cliente->num_documento . "*" . $cliente->telefono . "*" . $cliente->direccion; ?>
                             <td>
-                                <button type="button" class="btn btn-success btn-check" value="<?php echo $datacliente?>"><span class="fa fa-arrow-right"></span></button>
+                                <button type="button" class="btn btn-success btn-check" value="<?php echo $datacliente ?>"><span class="fa fa-arrow-right"></span></button>
                             </td>
                         </tr>
                         <?php endforeach; ?>
