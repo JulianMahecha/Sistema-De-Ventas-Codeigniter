@@ -83,9 +83,9 @@ class Ctlr_Ventas extends CI_Controller
             $idventa = $this->ventas_model->lastId();
             $this->updateComprobante($idcomprobante);
             $this->save_detalle($idproductos, $idventa, $precios, $cantidades, $importes);
-            redirect(base_url)."movimientos/ventas";
+            redirect(base_url()."movimientos/Ctlr_Ventas");
         } else {
-            redirect(base . url() . "movimientos/ventas/add");
+            redirect(base_url()."movimientos/Ctlr_Ventas/add");
         }
     }
 
@@ -118,13 +118,13 @@ class Ctlr_Ventas extends CI_Controller
         }
     }
 
-    protected function updateProducto($producto, $cantidad){
-        $productoActual = $this->productos_model->getProducto($producto);
+    protected function updateProducto($idproducto, $cantidad){
+        $productoActual = $this->productos_model->getProducto($idproducto);
 
         $data = array(
             'stock' => $productoActual->stock - $cantidad,
         );
 
-        $this->productos_model->updateProducto($producto, $data);
+        $this->productos_model->updateProducto($idproducto, $data);
     }
 }

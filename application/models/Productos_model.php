@@ -25,10 +25,10 @@ class Productos_model extends CI_Model
         return $resultado->row();
     }
     /* Actualiza producto por id */
-    public function updateProducto($data, $id)
+    public function updateProducto($id, $data)
     {
         $this->db->where("id", $id);
-        return $this->db->update('producto', $data);
+        return $this->db->update("producto", $data);
     }
     /* Cambia 'estado' de producto a 0 */
     public function deleteProducto($data, $id)
@@ -39,7 +39,6 @@ class Productos_model extends CI_Model
     /* Inserta nuevo producto */
     public function setProducto($data)
     {
-
         return $this->db->insert('producto', $data);
     }
 

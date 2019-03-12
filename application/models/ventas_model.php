@@ -25,7 +25,6 @@ class ventas_model extends CI_Model
     /* Funcion que busca el ultimo id */
     public function getComprobante($idcomprobante)
     {
-        return $this->db->where("id",  $idcomprobante);
         $result = $this->db->get("tipo_comprobante");
         return $result->row();
     }
