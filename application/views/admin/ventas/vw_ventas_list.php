@@ -23,17 +23,41 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Codigo</th>
-                                    <th>Nombre</th>
-                                    <th>Descripción</th>
-                                    <th>Precio</th>
-                                    <th>Stock</th>
-                                    <th>Categoria</th>
+                                    <th>Nombre Cliente</th>
+                                    <th>Tipo de Comprobante</th>
+                                    <th>Numero comprobante</th>
+                                    <th>Fecha</th>
+                                    <th>Total</th>
                                     <th>Opciones</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php if (!empty($ventas)) { ?>
 
+                                    <?php foreach ($ventas as $venta) { ?>
+                                        <tr>
+                                            <td>
+                                                <?php echo $venta->id; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $venta->nombres; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $venta->tipocomprobante; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $venta->num_documento; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $venta->fecha; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $venta->total; ?>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                    <?php }; ?>
+                                <?php }; ?>
                             </tbody>
                         </table>
                     </div>

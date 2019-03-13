@@ -20,12 +20,15 @@ class Ctlr_Ventas extends CI_Controller
 
     public function index()
     {
+        $data = array(
+            'ventas' => $this->ventas_model->getVentas(),
+        );
         $this->load->view('layouts/header');
         $this->load->view('layouts/aside');
-        $this->load->view('admin/ventas/vw_ventas_list');
+        $this->load->view('admin/ventas/vw_ventas_list', $data);
         $this->load->view('layouts/footer');
     }
-
+    /* Funcion Añadir */
     public function add()
     {
 
@@ -39,7 +42,7 @@ class Ctlr_Ventas extends CI_Controller
         $this->load->view('admin/ventas/vw_ventas_add', $data);
         $this->load->view('layouts/footer');
     }
-
+    /* Devuelve productos */
     public function getProductos()
     {
 
@@ -47,7 +50,7 @@ class Ctlr_Ventas extends CI_Controller
         $clientes = $this->ventas_model->getProductos($valor);
         echo json_encode($clientes);
     }
-    /* Funcion Store */
+    /* Funcion Store para la nueva venta */
     public function store()
     {
         $fecha = $this->input->post("fecha");
@@ -56,7 +59,7 @@ class Ctlr_Ventas extends CI_Controller
         $descuento = $this->input->post("descuento");
         $total = $this->input->post("total");
         $idcomprobante = $this->input->post("idcomprobante");
-        $idcliente = $this->input->post("id");
+        $idcliente = $this->input->post("idcliente");
         $idusuario = $this->session->userdata("id");
         $numero = $this->input->post("numero");
         $serie = $this->input->post("serie");
@@ -89,7 +92,7 @@ class Ctlr_Ventas extends CI_Controller
         }
     }
 
-    /*  */
+    /* Actualizando el numero del comprobante */
     protected function updateComprobante($idcomprobante)
     {
         $comprobanteActual = $this->ventas_model->getComprobante($idcomprobante);
@@ -101,7 +104,7 @@ class Ctlr_Ventas extends CI_Controller
         $this->ventas_model->updateComprobante($idcomprobante, $data);
     }
 
-    /*  */
+    /* Guardando detalle de la venta */
     protected function save_detalle($productos, $idventa, $precios, $cantidades, $importes)
     {
         for ($i = 0; $i < count($productos); $i++) {
@@ -117,7 +120,7 @@ class Ctlr_Ventas extends CI_Controller
             $this->updateProducto($productos[$i], $cantidades[$i]);
         }
     }
-
+    /* Actualizando Stock de producto despues de venta */
     protected function updateProducto($idproducto, $cantidad){
         $productoActual = $this->productos_model->getProducto($idproducto);
 

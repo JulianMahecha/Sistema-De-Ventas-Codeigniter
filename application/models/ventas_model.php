@@ -49,6 +49,20 @@ class ventas_model extends CI_Model
     {
         $this->db->insert("detalle_venta", $data);
     }
-    
-}
+    /* Devolviendo Ventas al la lista */
+    public function getVentas()
+    {
+        $this->db->select("v.*, c.nombres, tc.nombre as tipocomprobante");
+        $this->db->from("venta v");
+        $this->db->join("cliente c", "v.cliente_id = c.id");
+        $this->db->join("tipo_comprobante tc", "v.tipo_comprobante_id = tc.id");
 
+        $resultados = $this->db->get();
+
+        if ($resultados->num_rows() > 0) {
+            return $resultados->result();
+        } else {
+            return false;
+        }
+    }
+}
