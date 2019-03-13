@@ -97,6 +97,22 @@
             $("#modal-default .modal-body").html(html);
 
         })
+        /* JQuery para modal de Info Venta que recibe el valor de el boton ($datacliente)*/
+        $(".btn-view-venta").on("click", function() {
+
+            var valor_id = $(this).val();
+            $.ajax({
+                type: "POST",
+                url: base_url+"movimientos/Ctlr_ventas/view",
+                data: {id: valor_id},
+                dataType: "html",
+                success: function (data) {
+                    $("#modal-default .modal-body").html(data);
+                }
+            });
+
+        })
+
         /* Sobreescribiendo Datatables*/
         $('#example1').DataTable({
             "language": {
@@ -245,14 +261,13 @@
         })
         $("input[name=subtotal]").val(subtotal);
         porcentaje = $("#iva").val();
-        iva = subtotal * (porcentaje/100);
+        iva = subtotal * (porcentaje / 100);
         $("input[name=iva]").val(iva);
         descuento = $("input[name=descuento]").val();
         total = subtotal + iva - descuento;
         $("input[name=total]").val(total);
 
     }
-
 </script>
 </body>
 

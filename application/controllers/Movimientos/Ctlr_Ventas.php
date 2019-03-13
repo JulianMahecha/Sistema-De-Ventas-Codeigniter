@@ -130,4 +130,15 @@ class Ctlr_Ventas extends CI_Controller
 
         $this->productos_model->updateProducto($idproducto, $data);
     }
+
+    /* Funcion para generar modal*/
+    public function view()
+    {
+        $idventa = $this->input->post("id");
+        $data = array(
+            "venta" => $this->ventas_model->getVenta($idventa),
+            "detalles" => $this->ventas_model->getDetalle($idventa),
+        );
+        $this->load->view("admin/ventas/vw_ventas_view", $data);
+    }
 }

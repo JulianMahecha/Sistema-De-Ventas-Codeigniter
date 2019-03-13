@@ -54,7 +54,12 @@
                                             <td>
                                                 <?php echo $venta->total; ?>
                                             </td>
-                                            <td></td>
+                                            <td>
+                                                <button type ="button" class ="btn btn-info btn-view-venta"
+                                                value ="<?php echo $venta->id?>" data-toggle="modal" data-target="#modal-default">
+                                                    <span class ="fa fa-search"></span>
+                                                </button>
+                                            </td>
                                         </tr>
                                     <?php }; ?>
                                 <?php }; ?>
@@ -76,7 +81,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Info de Producto</h4>
+                <h4 class="modal-title">Información de la Venta</h4>
             </div>
             <div class="modal-body">
 

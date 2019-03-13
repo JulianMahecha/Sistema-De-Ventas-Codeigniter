@@ -65,4 +65,28 @@ class ventas_model extends CI_Model
             return false;
         }
     }
+    /* Funcion para devolver Venta*/
+    public function getVenta($id)
+    {
+        $this->db->select("v.*, c.nombres, c.telefono, c.direccion,c.num_documento as documento, 
+            tc.nombre as tipocomprobante");
+        $this->db->from("venta v");
+        $this->db->join("cliente c", "v.cliente_id = c.id");
+        $this->db->join("tipo_comprobante tc", "v.tipo_comprobante_id = tc.id");
+        $this->db->where("v.id", $id);
+
+        $resultado = $this->db->get();
+        return $resultado->row();
+    }
+    /* Funcion para devolver detalle*/
+    public function getDetalle($id)
+    {
+        $this->db->select("dt.*, p.codigo, p.nombre");
+        $this->db->from("detalle_venta dt");
+        $this->db->join("producto p", "dt.producto_id = p.id");
+        $this->db->where("dt.venta_id", $id);
+        $resultados = $this->db->get();
+        return $resultados->result();
+
+    }
 }
