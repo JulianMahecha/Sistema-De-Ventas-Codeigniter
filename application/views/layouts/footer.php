@@ -24,6 +24,8 @@
 <script src="<?php echo base_url(); ?>assets/template/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url(); ?>assets/template/dist/js/demo.js"></script>
+<!-- jQuery Print -->
+<script src="<?php echo base_url(); ?>assets/jQuery_Print/jQuery.print.js"></script>
 <script>
     /* JQuery para prevenir la eliminacion de Clientes, si el usuario acepta la funcion devuelve mantenimiento/Clientes */
     $(document).ready(function() {
@@ -229,6 +231,13 @@
 
             sumar();
         });
+
+        /* Funcion para imprimir */
+        $(document).on("click", ".btn-print", function (){
+            $("#modal-default .modal-body").print();
+
+
+        })
 
     })
 

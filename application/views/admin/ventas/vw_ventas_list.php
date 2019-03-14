@@ -88,6 +88,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary btn-print" data-dismiss="modal"><span class ="fa fa-print"> Imprimir</span></button>
             </div>
         </div>
         <!-- /.modal-content -->
