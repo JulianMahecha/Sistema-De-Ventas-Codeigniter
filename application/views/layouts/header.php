@@ -13,7 +13,10 @@
     <!-- JQuery UI -->
     <link rel="stylesheet" href="<?php echo base_url();?>assets/template/jquery-ui/jquery-ui.css">
     <!-- DataTables -->
-  <link rel="stylesheet" href="<?php echo base_url();?>datatables.net-bs/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>datatables.net-bs/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>assets\template\datatables-export\css\buttons.dataTables.min.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>assets\template\datatables-export\css\jquery.dataTables.min.css">
+
     <!-- Theme style -->
     <link rel="stylesheet" href="<?php echo base_url();?>assets/template/dist/css/AdminLTE.min.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -21,7 +24,7 @@
     <link rel="stylesheet" href="<?php echo base_url();?>assets/template/dist/css/skins/_all-skins.min.css">
     
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-red sidebar-mini">
     <!-- Site wrapper -->
     <div class="wrapper">
         <header class="main-header">

@@ -26,6 +26,15 @@
 <script src="<?php echo base_url(); ?>assets/template/dist/js/demo.js"></script>
 <!-- jQuery Print -->
 <script src="<?php echo base_url(); ?>assets/jQuery_Print/jQuery.print.js"></script>
+<!-- Datatables Export -->
+<script src="<?php echo base_url(); ?>assets\template\datatables-export\js\dataTables.buttons.min.js"></script>
+<script src="<?php echo base_url(); ?>assets\template\datatables-export\js\buttons.flash.min.js"></script>
+<script src="<?php echo base_url(); ?>assets\template\datatables-export\js\jszip.min.js"></script>
+<script src="<?php echo base_url(); ?>assets\template\datatables-export\js\buttons.html5.min.js"></script>
+<script src="<?php echo base_url(); ?>assets\template\datatables-export\js\buttons.print.min.js"></script>
+<script src="<?php echo base_url(); ?>assets\template\datatables-export\js\pdfmake.min.js"></script>
+<script src="<?php echo base_url(); ?>assets\template\datatables-export\js\vfs_fonts.js"></script>
+
 <script>
     /* JQuery para prevenir la eliminacion de Clientes, si el usuario acepta la funcion devuelve mantenimiento/Clientes */
     $(document).ready(function() {
@@ -105,10 +114,12 @@
             var valor_id = $(this).val();
             $.ajax({
                 type: "POST",
-                url: base_url+"movimientos/Ctlr_ventas/view",
-                data: {id: valor_id},
+                url: base_url + "movimientos/Ctlr_ventas/view",
+                data: {
+                    id: valor_id
+                },
                 dataType: "html",
-                success: function (data) {
+                success: function(data) {
                     $("#modal-default .modal-body").html(data);
                 }
             });
@@ -134,6 +145,33 @@
         });
         $('#example1').DataTable();
         $('.sidebar-menu').tree();
+
+        /*  Datatables-export */
+        $('#example').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                /* Opciones personalizadas boton excel */
+                {
+                    extend: 'excelHtml5',
+                    title: 'Listado de ventas',
+                    exportOptions:{
+                        columns:[0,1,2,3,4,5]
+                    },
+                },
+                {
+                    extend: 'pdfHtml5',
+                    title: 'Listado de ventas',
+                    exportOptions:{
+                        columns:[0,1,2,3,4,5]
+                    },
+                },
+                'copy', 'csv', 'print'
+            ]
+        });
+
+
+
+
 
         /*#comprobantes */
         $("#comprobantes").on("change", function() {
@@ -233,8 +271,10 @@
         });
 
         /* Funcion para imprimir */
-        $(document).on("click", ".btn-print", function (){
-            $("#modal-default .modal-body").print();
+        $(document).on("click", ".btn-print", function() {
+            $("#modal-default .modal-body").print({
+                title: "Comprobante de venta",
+            });
 
 
         })
