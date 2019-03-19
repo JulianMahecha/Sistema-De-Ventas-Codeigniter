@@ -24,10 +24,21 @@ class usuarios_model extends CI_Model
 		$this->db->select("u.*, r.nombre as rol");
 		$this->db->from("usuario u");
 		$this->db->join("rol r", "u.rol_id = r.id");
-		$this->db->where("estado", "1");
+		$this->db->where("u.estado", "1");
 		$resultado = $this->db->get();
 
 		return $resultado->result();
+	}
+
+	public function getUsuario($id)
+	{
+		$this->db->select("u.*, r.nombre as rol");
+		$this->db->from("usuario u");
+		$this->db->join("rol r", "u.rol_id = r.id");
+		$this->db->where("u.id", $id);
+		$resultado = $this->db->get();
+
+		return $resultado->row();
 	}
 
 	public function getRoles()
@@ -38,5 +49,11 @@ class usuarios_model extends CI_Model
 
 	public function setUsuario($data){
 		return $this->db->insert("usuario", $data);
+	}
+
+	public function updateUsuario($data, $id)
+	{
+			$this->db->where("id", $id);
+			return $this->db->update('usuario', $data);
 	}
 }

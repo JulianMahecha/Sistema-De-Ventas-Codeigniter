@@ -108,6 +108,23 @@
             $("#modal-default .modal-body").html(html);
 
         })
+        /* JQuery para modal de Cliente que recibe el valor de el boton ($datacliente)*/
+        $(".btn-view-usuario").on("click", function() {
+
+            var id = $(this).val();
+            $.ajax({
+                type: "POST",
+                url: base_url + "administrador/Usuarios_Controller/view",
+                data: {
+                    id: id,
+                },
+                dataType: "html",
+                success: function(data) {
+                    $("#modal-default .modal-body").html(data);
+                }
+            });
+
+        })
         /* JQuery para modal de Info Venta que recibe el valor de el boton ($datacliente)*/
         $(".btn-view-venta").on("click", function() {
 
@@ -154,15 +171,15 @@
                 {
                     extend: 'excelHtml5',
                     title: 'Listado de ventas',
-                    exportOptions:{
-                        columns:[0,1,2,3,4,5]
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5]
                     },
                 },
                 {
                     extend: 'pdfHtml5',
                     title: 'Listado de ventas',
-                    exportOptions:{
-                        columns:[0,1,2,3,4,5]
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5]
                     },
                 },
                 'copy', 'csv', 'print'
