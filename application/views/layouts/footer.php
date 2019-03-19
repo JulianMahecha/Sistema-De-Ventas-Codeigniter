@@ -58,9 +58,23 @@
         $(document).on("click", '.btn-pr-remove', function(e) {
             e.preventDefault();
             if (confirm("Esta seguro de eliminar el registro?")) {
-                var $ruta = $(this).attr("href");
+                var ruta = $(this).attr("href");
                 $.ajax({
-                    url: $ruta,
+                    url: ruta,
+                    type: "POST",
+                    success: function(response) {
+                        window.location.href = base_url + response;
+                    }
+                });
+            }
+        })
+        /* JQuery para prevenir la eliminacion de usuarios.*/
+        $(document).on("click", '.btn-usr-remove', function(e) {
+            e.preventDefault();
+            if (confirm("Esta seguro de eliminar el registro?")) {
+                var ruta = $(this).attr("href");
+                $.ajax({
+                    url: ruta,
                     type: "POST",
                     success: function(response) {
                         window.location.href = base_url + response;

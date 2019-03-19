@@ -39,6 +39,16 @@ class Usuarios_Controller extends CI_Controller
         $this->load->view('layouts/footer');
     }
 
+    public function delete($id)
+    {
+
+        $data = array(
+            'estado' => "0"
+        );
+            $this->usuarios_model->deleteUsuario($data, $id);
+            echo "administrador/Usuarios_Controller";
+    }
+
     public function edit($id)
     {
         $data = array(
@@ -50,6 +60,8 @@ class Usuarios_Controller extends CI_Controller
         $this->load->view('admin/usuarios/edit', $data);
         $this->load->view('layouts/footer');
     }
+
+
 
     public function store()
     {

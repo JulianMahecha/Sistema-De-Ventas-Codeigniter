@@ -19,6 +19,13 @@ class usuarios_model extends CI_Model
 		}
 	}
 
+	/* Cambia 'estado' de usuario a 0 */
+	public function deleteUsuario($data, $id)
+	{
+			$this->db->where("id", $id);
+			return $this->db->update('usuario', $data);
+	}
+
 	public function getUsuarios()
 	{
 		$this->db->select("u.*, r.nombre as rol");
