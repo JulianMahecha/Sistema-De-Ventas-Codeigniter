@@ -8,7 +8,7 @@ class usuarios_model extends CI_Model
 	{
 
 		$this->db->where("user", $user);
-		$this->db->where("password", $password);
+		$this->db->where("password", sha1($password));
 
 		$result = $this->db->get("usuario");
 
@@ -25,8 +25,18 @@ class usuarios_model extends CI_Model
 		$this->db->from("usuario u");
 		$this->db->join("rol r", "u.rol_id = r.id");
 		$this->db->where("estado", "1");
-		$resultado = $this->db->get(); 
+		$resultado = $this->db->get();
 
 		return $resultado->result();
+	}
+
+	public function getRoles()
+	{
+		$result = $this->db->get("rol");
+		return $result->result();
+	}
+
+	public function setUsuario($data){
+		return $this->db->insert("usuario", $data);
 	}
 }

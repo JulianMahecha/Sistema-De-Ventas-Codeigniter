@@ -60,7 +60,8 @@
                                             </button>
                                             <a href="<?php echo base_url(); ?>administrador/Usuarios_Controller/edit<?php echo $usuario->id; ?>" class="btn btn-warning"><span class="fa fa-pencil"></span></a>
                                             <a href="<?php echo base_url(); ?>administrador/Usuarios_Controller/remove<?php echo $usuario->id; ?>" class="btn btn-danger"><span class="fa fa-remove"></span></a>
-                                        </div>                                   </td>
+                                        </div>
+                                    </td>
                                 </tr>
                                 <?php endforeach; ?>
                                 <?php endif; ?>
