@@ -13,8 +13,8 @@
             <div class="box-body">
                 <div class="row">
                     <div class="col-md-12">
-                        <a href="<?php echo base_url(); ?>mantenimiento/Categorias/add" class="btn btn-primary btn-flat"><span class="fa fa-plus"> Agregar Categoria</span></a>
-                        <a href="<?php echo base_url(); ?>mantenimiento/Categorias/disabled_cat" class="btn btn-primary btn-flat"><span class="fa fa-eye-slash"> Ver Categorias Deshabilitadas</span></a>
+                        <a href="<?php echo base_url(); ?>administrador/Usuarios_Controller/add" class="btn btn-primary btn-flat"><span class="fa fa-plus"> Agregar Usuario</span></a>
+                        <a href="<?php echo base_url(); ?>administrador/Usuarios_Controller/disabled_cat" class="btn btn-primary btn-flat"><span class="fa fa-eye-slash"> Ver Usuarios Deshabilitados</span></a>
                     </div>
                 </div>
                 <hr>
@@ -25,32 +25,42 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Nombre</th>
-                                    <th>Descripcion</th>
-                                    <th>Opciones</th>
+                                    <th>Apellidos</th>
+                                    <th>Email</th>
+                                    <th>Usuario</th>
+                                    <th>Rol</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php if (!empty($categorias)) : ?>
-                                <?php foreach ($categorias as $categoria) : ?>
+                                <?php if (!empty($usuarios)) : ?>
+                                <?php foreach ($usuarios as $usuario) : ?>
                                 <tr>
                                     <td>
-                                        <?php echo $categoria->id; ?>
+                                        <?php echo $usuario->id; ?>
                                     </td>
                                     <td>
-                                        <?php echo $categoria->nombre; ?>
+                                        <?php echo $usuario->nombres; ?>
                                     </td>
                                     <td>
-                                        <?php echo $categoria->descripcion; ?>
+                                        <?php echo $usuario->apellidos; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $usuario->email; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $usuario->user; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $usuario->rol; ?>
                                     </td>
                                     <td>
                                         <div class="btn-group">
-                                            <button type="button" class="btn btn-info btn-view" data-toggle="modal" data-target="#modal-default" value="<?php echo $categoria->id ?>">
+                                            <button type="button" class="btn btn-info btn-view" data-toggle="modal" data-target="#modal-default" value="<?php echo $usuario->id ?>">
                                                 <span class="fa fa-search"></span>
                                             </button>
-                                            <a href="<?php echo base_url(); ?>mantenimiento/Categorias/edit/<?php echo $categoria->id; ?>" class="btn btn-warning"><span class="fa fa-pencil"></span></a>
-                                            <a href="<?php echo base_url(); ?>mantenimiento/Categorias/delete/<?php echo $categoria->id; ?>" class="btn btn-danger"><span class="fa fa-remove"></span></a>
-                                        </div>
-                                    </td>
+                                            <a href="<?php echo base_url(); ?>administrador/Usuarios_Controller/edit<?php echo $usuario->id; ?>" class="btn btn-warning"><span class="fa fa-pencil"></span></a>
+                                            <a href="<?php echo base_url(); ?>administrador/Usuarios_Controller/remove<?php echo $usuario->id; ?>" class="btn btn-danger"><span class="fa fa-remove"></span></a>
+                                        </div>                                   </td>
                                 </tr>
                                 <?php endforeach; ?>
                                 <?php endif; ?>

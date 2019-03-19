@@ -21,8 +21,11 @@ class usuarios_model extends CI_Model
 
 	public function getUsuarios()
 	{
+		$this->db->select("u.*, r.nombre as rol");
+		$this->db->from("usuario u");
+		$this->db->join("rol r", "u.rol_id = r.id");
 		$this->db->where("estado", "1");
-		$resultado = $this->db->get("usuario");
+		$resultado = $this->db->get(); 
 
 		return $resultado->result();
 	}

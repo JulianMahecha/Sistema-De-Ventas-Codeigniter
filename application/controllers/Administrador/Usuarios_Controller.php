@@ -12,7 +12,7 @@ class Usuarios_Controller extends CI_Controller
             redirect(base_url());
         }
 
-        $this->load->model("Usuarios_model");
+        $this->load->model("usuarios_model");
         $this->load->model("clientes_model");
         $this->load->model("productos_model");
     }
