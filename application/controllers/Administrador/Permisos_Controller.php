@@ -45,8 +45,8 @@ class Permisos_Controller extends CI_Controller
     {
         $data  = array(
             'roles' => $this->Usuarios_model->getRoles(),
-            'menus' => $this->Permisos_model->getMenus(),
-            'permiso' => $this->Permisos_model->getPermiso($id)
+            'menus' => $this->permisos_model->getMenus(),
+            'permiso' => $this->permisos_model->getPermiso($id)
         );
         $this->load->view("layouts/header");
         $this->load->view("layouts/aside");
@@ -72,11 +72,11 @@ class Permisos_Controller extends CI_Controller
             "p_delete" => $delete,
         );
 
-        if ($this->Permisos_model->save($data)) {
-            redirect(base_url() . "administrador/permisos");
+        if ($this->permisos_model->save($data)) {
+            redirect(base_url() . "administrador/Permisos_Controller");
         } else {
             $this->session->set_flashdata("error", "No se pudo guardar la informacion");
-            redirect(base_url() . "administrado/permisos/add");
+            redirect(base_url() . "administrado/Permisos_Controller/add");
         }
     }
 }

@@ -21,7 +21,7 @@
 
                         </div>
                         <?php endif; ?>
-                        <form action="<?php echo base_url(); ?>administrador/permisos/store" method="POST">
+                        <form action="<?php echo base_url(); ?>administrador/Permisos_Controller/store" method="POST">
 
                             <div class="form-group">
                                 <label for="rol">Roles:</label>

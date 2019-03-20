@@ -23,6 +23,12 @@ class permisos_model extends CI_Model
         return $resultados->result();
     }
 
+    public function getPermiso($id){
+		$this->db->where("id",$id);
+		$resultado = $this->db->get("permisos");
+		return $resultado->row();
+	}
+
     public function save($data){
 		return $this->db->insert("permisos",$data);
     }
