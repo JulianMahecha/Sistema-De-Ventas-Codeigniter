@@ -41,10 +41,16 @@ class Permisos_Controller extends CI_Controller
         $this->load->view('layouts/footer');
     }
 
+    public function delete($id)
+    {
+        $this->permisos_model->delete($id);
+        redirect(base_url() . "administrador/Permisos_Controller");
+    }
+
     public function edit($id)
     {
         $data  = array(
-            'roles' => $this->Usuarios_model->getRoles(),
+            'roles' => $this->usuarios_model->getRoles(),
             'menus' => $this->permisos_model->getMenus(),
             'permiso' => $this->permisos_model->getPermiso($id)
         );
@@ -79,5 +85,29 @@ class Permisos_Controller extends CI_Controller
             redirect(base_url() . "administrado/Permisos_Controller/add");
         }
     }
-}
 
+    public function update()
+    {
+        $idpermiso = $this->input->post("idpermiso");
+        $menu = $this->input->post("menu");
+        $rol = $this->input->post("rol");
+        $insert = $this->input->post("insert");
+        $read = $this->input->post("read");
+        $update = $this->input->post("update");
+        $delete = $this->input->post("delete");
+
+        $data = array(
+            "p_read" => $read,
+            "p_insert" => $insert,
+            "p_update" => $update,
+            "p_delete" => $delete,
+        );
+
+        if ($this->permisos_model->update($idpermiso, $data)) {
+            redirect(base_url() . "administrador/Permisos_Controller");
+        } else {
+            $this->session->set_flashdata("error", "No se pudo guardar la informacion");
+            redirect(base_url() . "administrador/Permisos_Controller/edit/" . $idpermiso);
+        }
+    }
+}

@@ -42,37 +42,37 @@
                             <div class="form-group">
                                 <label for="read">Leer:</label>
                                 <label class="radio-inline">
-                                    <input type="radio" name="read" value="1" <?php echo $permiso->read == 1 ? "checked" : ""; ?>>Si
+                                    <input type="radio" name="read" value="1" <?php echo $permiso->p_read == 1 ? "checked" : ""; ?>>Si
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" name="read" value="0" <?php echo $permiso->read == 0 ? "checked" : ""; ?>>No
+                                    <input type="radio" name="read" value="0" <?php echo $permiso->p_read == 0 ? "checked" : ""; ?>>No
                                 </label>
                             </div>
                             <div class="form-group">
                                 <label for="read">Agregar:</label>
                                 <label class="radio-inline">
-                                    <input type="radio" name="insert" value="1" <?php echo $permiso->insert == 1 ? "checked" : ""; ?>>Si
+                                    <input type="radio" name="insert" value="1" <?php echo $permiso->p_insert == 1 ? "checked" : ""; ?>>Si
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" name="insert" value="0" <?php echo $permiso->insert == 0 ? "checked" : ""; ?>>No
+                                    <input type="radio" name="insert" value="0" <?php echo $permiso->p_insert == 0 ? "checked" : ""; ?>>No
                                 </label>
                             </div>
                             <div class="form-group">
                                 <label for="read">Editar:</label>
                                 <label class="radio-inline">
-                                    <input type="radio" name="update" value="1" <?php echo $permiso->update == 1 ? "checked" : ""; ?>>Si
+                                    <input type="radio" name="update" value="1" <?php echo $permiso->p_update == 1 ? "checked" : ""; ?>>Si
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" name="update" value="0" <?php echo $permiso->update == 0 ? "checked" : ""; ?>>No
+                                    <input type="radio" name="update" value="0" <?php echo $permiso->p_update == 0 ? "checked" : ""; ?>>No
                                 </label>
                             </div>
                             <div class="form-group">
                                 <label for="read">Eliminar:</label>
                                 <label class="radio-inline">
-                                    <input type="radio" name="delete" value="1" <?php echo $permiso->delete == 1 ? "checked" : ""; ?>>Si
+                                    <input type="radio" name="delete" value="1" <?php echo $permiso->p_delete == 1 ? "checked" : ""; ?>>Si
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" name="delete" value="0" <?php echo $permiso->delete == 0 ? "checked" : ""; ?>>No
+                                    <input type="radio" name="delete" value="0" <?php echo $permiso->p_delete == 0 ? "checked" : ""; ?>>No
                                 </label>
                             </div>
                             <div class="form-group">
