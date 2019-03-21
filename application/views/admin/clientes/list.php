@@ -4,6 +4,10 @@
         <h1>
             Clientes
             <small>List</small>
+            <?php 
+                $CI = & get_instance();
+                echo ($CI->uri->segment(1) . "/" . $CI->uri->segment(2));
+                ;?>
         </h1>
     </section>
     <!-- Main content -->

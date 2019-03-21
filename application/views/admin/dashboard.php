@@ -5,8 +5,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Categoria
-            <small>Editar</small>
+            Dashboard
+            <small>Principal</small>
         </h1>
     </section>
     <!-- Main content -->
@@ -18,6 +18,7 @@
             </div>
             <!-- /.box-body -->
         </div>
+
         <!-- /.box -->
     </section>
     <!-- /.content -->
