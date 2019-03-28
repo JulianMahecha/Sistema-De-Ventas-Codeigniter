@@ -4,10 +4,6 @@
         <h1>
             Clientes
             <small>List</small>
-            <?php 
-                $CI = & get_instance();
-                echo ($CI->uri->segment(1) . "/" . $CI->uri->segment(2));
-                ;?>
         </h1>
     </section>
     <!-- Main content -->
@@ -16,9 +12,11 @@
         <div class="box box-solid">
             <div class="box-body">
                 <div class="row">
-                    <div class="col-md-12">
-                        <a href="<?php echo base_url(); ?>mantenimiento/Clientes/add" class="btn btn-primary btn-flat"><span class="fa fa-plus"> Agregar Cliente</span></a>
-                    </div>
+                    <?php if ($permisos->p_insert == 1) : ?>
+                        <div class="col-md-12">
+                            <a href="<?php echo base_url(); ?>mantenimiento/Clientes/add" class="btn btn-primary btn-flat"><span class="fa fa-plus"> Agregar Cliente</span></a>
+                        </div>
+                    <?php endif; ?>
                 </div>
                 <hr>
                 <div class="row">
@@ -60,14 +58,18 @@
                                     <td>
                                         <?php echo $cliente->direccion; ?>
                                     </td>
-                                    <?php $datacliente = $cliente->id."*".$cliente->nombres."*".$cliente->tipocliente."*".$cliente->tipodocumento."*".$cliente->num_documento."*".$cliente->telefono."*".$cliente->direccion;?>
+                                    <?php $datacliente = $cliente->id . "*" . $cliente->nombres . "*" . $cliente->tipocliente . "*" . $cliente->tipodocumento . "*" . $cliente->num_documento . "*" . $cliente->telefono . "*" . $cliente->direccion; ?>
                                     <td>
                                         <div class="btn-group">
                                             <button type="button" class="btn btn-info btn-cl-view" data-toggle="modal" data-target="#modal-default" value="<?php echo $datacliente ?>">
                                                 <span class="fa fa-search"></span>
                                             </button>
+                                            <?php if($permisos->p_update == 1):?>
                                             <a href="<?php echo base_url(); ?>mantenimiento/Clientes/edit/<?php echo $cliente->id; ?>" class="btn btn-warning"><span class="fa fa-pencil"></span></a>
+                                            <?php endif;?>
+                                            <?php if($permisos->p_delete == 1):?>
                                             <a href="<?php echo base_url(); ?>mantenimiento/Clientes/delete/<?php echo $cliente->id; ?>" class="btn btn-danger btn-remove"><span class="fa fa-remove"></span></a>
+                                            <?php endif;?>
                                         </div>
                                     </td>
                                 </tr>

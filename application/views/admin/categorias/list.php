@@ -12,10 +12,12 @@
         <div class="box box-solid">
             <div class="box-body">
                 <div class="row">
+                <?php if($permisos->p_insert == 1):?>
                     <div class="col-md-12">
                         <a href="<?php echo base_url(); ?>mantenimiento/Categorias/add" class="btn btn-primary btn-flat"><span class="fa fa-plus"> Agregar Categoria</span></a>
                         <a href="<?php echo base_url(); ?>mantenimiento/Categorias/disabled_cat" class="btn btn-primary btn-flat"><span class="fa fa-eye-slash"> Ver Categorias Deshabilitadas</span></a>
                     </div>
+                <?php endif;?>
                 </div>
                 <hr>
                 <div class="row">

@@ -22,7 +22,6 @@
     <!-- AdminLTE Skins. Choose a skin from the css/skins
     folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="<?php echo base_url();?>assets/template/dist/css/skins/_all-skins.min.css">
-    
 </head>
 <body class="hold-transition skin-red sidebar-mini">
     <!-- Site wrapper -->
@@ -49,7 +48,7 @@
                         <!-- User Account: style can be found in dropdown.less -->
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <img src="<?php echo base_url()?>assets/template/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                                <img src="https://i.pinimg.com/originals/e1/8e/86/e18e868d13a3bc244535266a0a299202.gif" class="user-image" alt="User Image">
                                 <span class="hidden-xs"><?php echo $this->session->userdata("nombre")?></span>
                             </a>
                             <ul class="dropdown-menu">

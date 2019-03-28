@@ -7,6 +7,7 @@ class Clientes extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->permisos = $this->backend_lib->control();
         $this->load->model("clientes_model");
     }
 
@@ -15,8 +16,10 @@ class Clientes extends CI_Controller
 
     public function index()
     {
+        if(! $this->permisos->p_read){ redirect(base_url()); return; }
         $data = array(
             'clientes' => $this->clientes_model->getClientes(),
+            'permisos' => $this->permisos
         );
         $this->load->view('layouts/header');
         $this->load->view('layouts/aside');
@@ -28,6 +31,7 @@ class Clientes extends CI_Controller
 
     public function add()
     {
+        if(! $this->permisos->p_insert){ redirect(base_url()); return; }
         $data = array(
             'tipo_clientes' => $this->clientes_model->getTipoClientes(),
             'tipo_documentos' => $this->clientes_model->getTipoDocumentos()
@@ -42,6 +46,7 @@ class Clientes extends CI_Controller
     //Metodo para eliminar
     public function delete($id)
     {
+        if(! $this->permisos->p_delete){ redirect(base_url()); return; }
         $data = array(
             'estado' => '0'
         );
@@ -58,7 +63,7 @@ class Clientes extends CI_Controller
 
     public function edit($id)
     {
-
+        if(! $this->permisos->p_update){ redirect(base_url()); return; }
         $data = array(
             'cliente' => $this->clientes_model->getCliente($id),
             'tipo_clientes' => $this->clientes_model->getTipoClientes(),

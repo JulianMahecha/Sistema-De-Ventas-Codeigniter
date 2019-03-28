@@ -47,30 +47,30 @@
                                     </td>
                                     <td>
                                         <?php if ($permiso->p_read == 0) : ?>
-                                            <span class="fa fa-times"></span>
+                                        <span class="fa fa-times"></span>
                                         <?php else : ?>
-                                            <span class="fa fa-check"></span>
+                                        <span class="fa fa-check"></span>
                                         <?php endif; ?>
                                     </td>
                                     <td>
                                         <?php if ($permiso->p_insert == 0) : ?>
-                                            <span class="fa fa-times"></span>
+                                        <span class="fa fa-times"></span>
                                         <?php else : ?>
-                                            <span class="fa fa-check"></span>
+                                        <span class="fa fa-check"></span>
                                         <?php endif; ?>
                                     </td>
                                     <td>
                                         <?php if ($permiso->p_update == 0) : ?>
-                                            <span class="fa fa-times"></span>
+                                        <span class="fa fa-times"></span>
                                         <?php else : ?>
-                                            <span class="fa fa-check"></span>
+                                        <span class="fa fa-check"></span>
                                         <?php endif; ?>
                                     </td>
                                     <td>
                                         <?php if ($permiso->p_delete == 0) : ?>
-                                            <span class="fa fa-times"></span>
+                                        <span class="fa fa-times"></span>
                                         <?php else : ?>
-                                            <span class="fa fa-check"></span>
+                                        <span class="fa fa-check"></span>
                                         <?php endif; ?>
                                     </td>
                                     <td>
