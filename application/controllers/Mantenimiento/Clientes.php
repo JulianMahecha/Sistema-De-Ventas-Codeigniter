@@ -183,7 +183,7 @@ class Clientes extends CI_Controller
     //Modal
     public function view($id)
     {
-
+        if(! $this->permisos->p_read){ redirect(base_url()); return; }
         $data = array(
             'cliente' => $this->clientes_model->getCliente($id),
         );

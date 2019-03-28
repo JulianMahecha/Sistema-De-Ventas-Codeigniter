@@ -29,7 +29,9 @@
                                     <th>Insertar</th>
                                     <th>Actualizar</th>
                                     <th>Eliminar</th>
+                                    <?php if($accesos->p_delete == 1 || $accesos->p_update == 1 ):?>
                                     <th>Opciones</th>
+                                    <?php endif;?>
                                 </tr>
                             </thead>
                             <tbody>
@@ -75,8 +77,12 @@
                                     </td>
                                     <td>
                                         <div class="btn-group">
-                                            <a href="<?php echo base_url(); ?>administrador/Permisos_Controller/edit/<?php echo $permiso->id; ?>" class="btn btn-warning"><span class="fa fa-pencil"></span></a>
-                                            <a href="<?php echo base_url(); ?>administrador/Permisos_Controller/delete/<?php echo $permiso->id; ?>" class="btn btn-danger"><span class="fa fa-remove"></span></a>
+                                            <?php if ($accesos->p_update == 1) : ?>
+                                                <a href="<?php echo base_url(); ?>administrador/Permisos_Controller/edit/<?php echo $permiso->id; ?>" class="btn btn-warning"><span class="fa fa-pencil"></span></a>
+                                            <?php endif; ?>
+                                            <?php if ($accesos->p_delete == 1) : ?>
+                                                <a href="<?php echo base_url(); ?>administrador/Permisos_Controller/delete/<?php echo $permiso->id; ?>" class="btn btn-danger"><span class="fa fa-remove"></span></a>
+                                            <?php endif; ?>
                                         </div>
                                     </td>
                                 </tr>
