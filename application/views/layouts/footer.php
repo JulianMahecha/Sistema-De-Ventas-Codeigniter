@@ -34,12 +34,16 @@
 <script src="<?php echo base_url(); ?>assets\template\datatables-export\js\buttons.print.min.js"></script>
 <script src="<?php echo base_url(); ?>assets\template\datatables-export\js\pdfmake.min.js"></script>
 <script src="<?php echo base_url(); ?>assets\template\datatables-export\js\vfs_fonts.js"></script>
+<!-- Highcharts -->
+<script src="<?php echo base_url(); ?>assets/template/highcharts/highcharts.js"></script>
+<script src="<?php echo base_url(); ?>assets/template/highcharts/exporting.js"></script>
+<script src="<?php echo base_url(); ?>assets/template/jquery-print/jquery.print.js"></script>
 
 <script>
     /* JQuery para prevenir la eliminacion de Clientes, si el usuario acepta la funcion devuelve mantenimiento/Clientes */
     $(document).ready(function() {
         var base_url = "<?php echo base_url(); ?>";
-
+        graficar();
         $(document).on("click", '.btn-remove', function(e) {
             e.preventDefault();
             if (confirm("Esta seguro de eliminar el registro?")) {
@@ -347,6 +351,80 @@
         total = subtotal + iva - descuento;
         $("input[name=total]").val(total);
 
+    }
+
+    function datagrafico(base_url, year) {
+        namesMonth = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Set", "Oct", "Nov", "Dic"];
+        $.ajax({
+            url: base_url + "dashboard/getData",
+            type: "POST",
+            data: {
+                year: year
+            },
+            dataType: "json",
+            success: function(data) {
+                var meses = new Array();
+                var montos = new Array();
+                $.each(data, function(key, value) {
+                    meses.push(namesMonth[value.mes - 1]);
+                    valor = Number(value.monto);
+                    montos.push(valor);
+                });
+                graficar(meses, montos, year);
+            }
+        });
+    }
+
+    function graficar(meses, montos, year) {
+        Highcharts.chart('grafico', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Monto acumulado por las ventas de los meses'
+            },
+            subtitle: {
+                text: 'Año:' + year
+            },
+            xAxis: {
+                categories: meses,
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Monto Acumulado (Pesos COL)'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">Monto: </td>' +
+                    '<td style="padding:0"><b>{point.y:.2f} soles</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                },
+                series: {
+                    dataLabels: {
+                        enabled: true,
+                        formatter: function() {
+                            return Highcharts.numberFormat(this.y, 2)
+                        }
+
+                    }
+                }
+            },
+            series: [{
+                name: 'Meses',
+                data: montos
+
+            }]
+        });
     }
 </script>
 </body>

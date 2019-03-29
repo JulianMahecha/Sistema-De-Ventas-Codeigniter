@@ -62,12 +62,10 @@
                                             <button type="button" class="btn btn-info btn-pr-view" data-toggle="modal" data-target="#modal-default" value="<?php echo $producto->id ?>">
                                                 <span class="fa fa-search"></span>
                                             </button>
-                                            <?php if($permisos->p_update == 1):?>
+                                            
                                             <a href="<?php echo base_url(); ?>mantenimiento/Productos/edit/<?php echo $producto->id; ?>" class="btn btn-warning"><span class="fa fa-pencil"></span></a>
-                                            <?php endif;?>
-                                            <?php if($permisos->p_delete == 1):?>
                                             <a href="<?php echo base_url(); ?>mantenimiento/Productos/delete/<?php echo $producto->id; ?>" class="btn btn-danger btn-pr-remove"><span class="fa fa-remove"></span></a>
-                                            <?php endif;?>
+                                            
                                         </div>
                                     </td>
                                 </tr>

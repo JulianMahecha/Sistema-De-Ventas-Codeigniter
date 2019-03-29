@@ -6,9 +6,9 @@
             <section class="sidebar">      
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu" data-widget="tree">
-                    <li class="header">MAIN NAVIGATION</li>
+                    <li class="header">Navegación Principal</li>
                     <li>
-                        <a href="../widgets.html">
+                        <a href="<?php echo base_url()?>dashboard">
                             <i class="fa fa-home"></i> <span>Inicio</span>
                         </a>
                     </li>
